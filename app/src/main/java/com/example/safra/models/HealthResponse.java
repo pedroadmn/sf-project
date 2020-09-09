@@ -3,36 +3,30 @@ package com.example.safra.models;
 import com.google.gson.annotations.SerializedName;
 
 public class HealthResponse {
-    @SerializedName("status_code")
-    private int statusCode;
+    @SerializedName("message")
+    private int message;
 
-    @SerializedName("auth_token")
-    private String authToken;
+    @SerializedName("code")
+    private String code;
 
-    @SerializedName("user")
-    private User user;
-
-    public int getStatusCode() {
-        return statusCode;
+    public HealthResponse(int message, String code) {
+        this.message = message;
+        this.code = code;
     }
 
-    public void setStatusCode(int statusCode) {
-        this.statusCode = statusCode;
+    public int getMessage() {
+        return message;
     }
 
-    public String getAuthToken() {
-        return authToken;
+    public void setMessage(int message) {
+        this.message = message;
     }
 
-    public void setAuthToken(String authToken) {
-        this.authToken = authToken;
+    public String getCode() {
+        return code;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setCode(String code) {
+        this.code = code;
     }
 }

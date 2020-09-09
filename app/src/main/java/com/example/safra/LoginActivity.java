@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.util.Base64;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.safra.models.OauthClient;
 
 import java.util.HashMap;
@@ -15,37 +14,30 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class LoginActivity extends AppCompatActivity {
     private SessionManager sessionManager;
-    private OauthClient apiClient;
+    private OauthClient authClient;
+    private ApiClient apiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        apiClient = new OauthClient(this);
+        authClient = new OauthClient(this);
+        apiClient = new ApiClient(this);
         sessionManager = new SessionManager(this);
 
         Map<String, String> headers = getTokenRequestHeaders1(Constants.CLIENT_ID, Constants.SECRET);
 
-        apiClient.getInstance().getAuthToken(headers, "client_credentials", "urn:opc:resource:consumer::all")
+        Map<String, String> headers1 = new HashMap<>();
+
+        authClient.getInstance().getAuthToken(headers, "client_credentials", "urn:opc:resource:consumer::all")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        response -> {
-                                sessionManager.saveAuthToken(response.getAccess_token());
-                        },
+                        response -> sessionManager.saveAuthToken(response.getAccess_token()),
                         throwable -> {
                             String b = "";
                         });
-
-    }
-
-    private static String getTokenRequestHeaders(String clientId, String clientSecret) {
-        return
-        "Basic "
-                + (Base64.encodeToString((clientId
-                + ":"
-                + clientSecret).getBytes(), Base64.NO_WRAP));
     }
 
     private static Map<String, String> getTokenRequestHeaders1(String clientId, String clientSecret) {
@@ -58,28 +50,4 @@ public class LoginActivity extends AppCompatActivity {
 
         return headers;
     }
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_login)
-//
-//        apiClient = ApiClient()
-//        sessionManager = SessionManager(this)
-//
-//        apiClient.getApiService().login(LoginRequest(email = "s@sample.com", password = "mypassword"))
-//                .enqueue(object : Callback<LoginResponse> {
-//            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-//                // Error logging in
-//            }
-//
-//            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-//                val loginResponse = response.body()
-//
-//                if (loginResponse?.statusCode == 200 && loginResponse.user != null) {
-//                    sessionManager.saveAuthToken(loginResponse.authToken)
-//                } else {
-//                    // Error logging in
-//                }
-//            }
-//        })
 }

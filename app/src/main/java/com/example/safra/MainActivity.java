@@ -20,19 +20,19 @@ public class MainActivity extends AppCompatActivity {
         apiClient = new ApiClient(this);
         sessionManager = new SessionManager(this);
 
-        apiClient.getInstance().getHealth()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        response -> {
-                            if (response.getStatusCode() == 200 && response.getUser() != null) {
-                                sessionManager.saveAuthToken(response.getAuthToken());
-                            } else {
-                                // Error logging in
-                            }
-                        },
-                        throwable -> {
-                            String b = "";
-                        });
+//        apiClient.getInstance().getHealth()
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(
+//                        response -> {
+//                            if (response.getStatusCode() == 200 && response.getUser() != null) {
+//                                sessionManager.saveAuthToken(response.getAuthToken());
+//                            } else {
+//                                // Error logging in
+//                            }
+//                        },
+//                        throwable -> {
+//                            String b = "";
+//                        });
     }
 }
