@@ -16,6 +16,7 @@ import com.example.safra.R;
 import com.example.safra.SessionManager;
 import com.example.safra.Utils;
 import com.example.safra.models.OauthClient;
+import com.example.safra.models.accountBalance.AccountBalanceResponse;
 import com.example.safra.models.accountInfo.AccountInfoResponse;
 
 import java.util.HashMap;
@@ -32,9 +33,13 @@ public class MainActivity extends AppCompatActivity {
     private OauthClient authClient;
     private SessionManager sessionManager;
     private AccountInfoResponse account;
+    private AccountBalanceResponse accountBalance;
 
     @BindView(R.id.lblAccount)
     TextView lblAccount;
+
+    @BindView(R.id.lblBalance)
+    TextView lblBalance;
 
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
@@ -65,14 +70,17 @@ public class MainActivity extends AppCompatActivity {
                             sessionManager.saveAuthToken(response.getAccess_token());
                             Intent intent = getIntent();
 
-                            apiClient.getInstance().getAccountInfo(Utils.getHeaders(this), intent.getStringExtra("Account"))
+                            apiClient.getInstance().getAccountBalances(Utils.getHeaders(this), intent.getStringExtra("Account"))
                                     .subscribeOn(Schedulers.io())
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(
-                                            accountResponse -> {
-                                                String accountNumber = String.format(getString(R.string.cc), accountResponse.getData().getAccount().get(0).getAccountId());
-                                                lblAccount.setVisibility(View.VISIBLE);
+                                            accountBalanceResponse -> {
+                                                String accountNumber = String.format(getString(R.string.cc), accountBalanceResponse.getData().getBalance().get(0).getAccountId());
+                                                String accountBalance = String.format(getString(R.string.balance), accountBalanceResponse.getData().getBalance().get(0).getAmount().getAmount());
+                                                lblBalance.setText(accountBalance);
                                                 lblAccount.setText(accountNumber);
+                                                lblAccount.setVisibility(View.VISIBLE);
+                                                lblBalance.setVisibility(View.VISIBLE);
                                                 progressBar.setVisibility(View.INVISIBLE);
                                             },
                                             throwable -> {
