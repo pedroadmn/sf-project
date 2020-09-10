@@ -5,6 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.safra.ApiClient;
 import com.example.safra.Constants;
@@ -17,6 +21,8 @@ import com.example.safra.models.accountInfo.AccountInfoResponse;
 import java.util.HashMap;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
@@ -27,10 +33,18 @@ public class MainActivity extends AppCompatActivity {
     private SessionManager sessionManager;
     private AccountInfoResponse account;
 
+    @BindView(R.id.lblAccount)
+    TextView lblAccount;
+
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ButterKnife.bind(this);
 
         apiClient = new ApiClient(this);
         sessionManager = new SessionManager(this);
@@ -41,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
         Map<String, String> headers = Utils.getTokenRequestHeaders(Constants.CLIENT_ID, Constants.SECRET);
 
+        progressBar.setVisibility(View.VISIBLE);
+
         authClient.getInstance().getAuthToken(headers, "client_credentials", "urn:opc:resource:consumer::all")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -49,13 +65,15 @@ public class MainActivity extends AppCompatActivity {
                             sessionManager.saveAuthToken(response.getAccess_token());
                             Intent intent = getIntent();
 
-
                             apiClient.getInstance().getAccountInfo(Utils.getHeaders(this), intent.getStringExtra("Account"))
                                     .subscribeOn(Schedulers.io())
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(
                                             accountResponse -> {
-                                                account = accountResponse;
+                                                String accountNumber = String.format(getString(R.string.cc), accountResponse.getData().getAccount().get(0).getAccountId());
+                                                lblAccount.setVisibility(View.VISIBLE);
+                                                lblAccount.setText(accountNumber);
+                                                progressBar.setVisibility(View.INVISIBLE);
                                             },
                                             throwable -> {
                                             });

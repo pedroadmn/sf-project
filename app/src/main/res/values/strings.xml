@@ -22,4 +22,5 @@
     <string name="no">No</string>
     <string name="press_again_to_close_app">Press again to close the app.</string>
     <string name="phone">Phone</string>
+    <string name="cc">CC: %s</string>
 </resources>
