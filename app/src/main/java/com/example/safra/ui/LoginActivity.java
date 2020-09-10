@@ -3,6 +3,9 @@ package com.example.safra.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +14,7 @@ import com.example.safra.ApiClient;
 import com.example.safra.Constants;
 import com.example.safra.R;
 import com.example.safra.SessionManager;
+import com.example.safra.Utils;
 import com.example.safra.models.OauthClient;
 
 import java.util.HashMap;
@@ -29,6 +33,15 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.txtRegister)
     TextView txtRegister;
 
+    @BindView(R.id.edtEmail)
+    TextView edtEmail;
+
+    @BindView(R.id.btnLogin)
+    Button btnLogin;
+
+    @BindView(R.id.loginProgressBar)
+    ProgressBar loginProgressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,27 +53,15 @@ public class LoginActivity extends AppCompatActivity {
         apiClient = new ApiClient(this);
         sessionManager = new SessionManager(this);
 
+        btnLogin.setOnClickListener(v -> login());
+
         txtRegister.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), RegisterActivity.class)));
-
-        Map<String, String> headers = getTokenRequestHeaders1(Constants.CLIENT_ID, Constants.SECRET);
-
-        authClient.getInstance().getAuthToken(headers, "client_credentials", "urn:opc:resource:consumer::all")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        response -> sessionManager.saveAuthToken(response.getAccess_token()),
-                        throwable -> {
-                        });
     }
 
-    private static Map<String, String> getTokenRequestHeaders1(String clientId, String clientSecret) {
-        Map<String, String> headers = new HashMap<>();
-        String base64Secret = "Basic "
-                + (Base64.encodeToString((clientId
-                + ":"
-                + clientSecret).getBytes(), Base64.NO_WRAP));
-        headers.put("Authorization", base64Secret);
-
-        return headers;
+    private void login() {
+        loginProgressBar.setVisibility(View.VISIBLE);
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("Account", edtEmail.getText().toString().trim());
+        startActivity(intent);
     }
 }
