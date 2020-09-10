@@ -1,8 +1,12 @@
-package com.example.safra;
+package com.example.safra.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.safra.ApiClient;
+import com.example.safra.R;
+import com.example.safra.SessionManager;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;

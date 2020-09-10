@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Safra</string>
+    <string name="account_hint">Account</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button">Login</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="sign_up_button">Sign up</string>
+    <string name="sucess_login">Login Succeeded!</string>
+    <string name="login">Log In</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="register">Register</string>
+    <string name="fullName">Name</string>
+    <string name="already_registered">Already Registered?</string>
+    <string name="login_here"> Login Here</string>
+    <string name="registered_successfully">Registered Successfully</string>
+    <string name="registered_unsuccessfully">Registered Unsuccessfully</string>
+    <string name="login_error_message">Login error, please Login Again</string>
+    <string name="reset_password">Reset Password?</string>
+    <string name="reset_password_link_message">Enter your email to received reset link."</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="press_again_to_close_app">Press again to close the app.</string>
+    <string name="phone">Phone</string>
 </resources>

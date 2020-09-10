@@ -26,4 +26,10 @@ public interface ApiSafraService {
 
     @GET(Constants.BALANCE_INFO_ENDPOINT)
     Observable<AccountBalanceResponse> getAccountBalances(@HeaderMap Map<String, String> headers, @Path("accountId") String accountId);
+
+    @GET(Constants.TRANSACTION_INFO_ENDPOINT)
+    Observable<AccountBalanceResponse> getAccountTransaction(@HeaderMap Map<String, String> headers, @Path("accountId") String accountId);
+
+    @POST(Constants.TRANSFER_ENDPOINT)
+    Observable<AccountBalanceResponse> transfers(@HeaderMap Map<String, String> headers, @Path("accountId") String accountId);
 }
