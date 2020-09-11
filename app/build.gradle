@@ -50,4 +50,6 @@ dependencies {
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 
+    implementation "dev.ahamed.mva3:adapter:3.0.0-beta01"
+
 }
