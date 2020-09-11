@@ -1,6 +1,7 @@
 package com.example.safra.ui.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.example.safra.models.accountBalance.AccountBalanceResponse;
 import com.example.safra.models.accountInfo.AccountInfoResponse;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private SessionManager sessionManager;
     private AccountInfoResponse account;
     private AccountBalanceResponse accountBalance;
+    private List<Fragment> backList;
 
     @BindView(R.id.lblAccount)
     TextView lblAccount;
