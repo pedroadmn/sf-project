@@ -1,8 +1,7 @@
-package com.example.safra.ui;
+package com.example.safra.ui.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -11,19 +10,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.safra.ApiClient;
-import com.example.safra.Constants;
 import com.example.safra.R;
 import com.example.safra.SessionManager;
-import com.example.safra.Utils;
 import com.example.safra.models.OauthClient;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class LoginActivity extends AppCompatActivity {
     private SessionManager sessionManager;

@@ -1,4 +1,4 @@
-package com.example.safra.ui;
+package com.example.safra.ui.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 

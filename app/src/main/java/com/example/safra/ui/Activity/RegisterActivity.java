@@ -1,4 +1,4 @@
-package com.example.safra.ui;
+package com.example.safra.ui.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +19,6 @@ import com.example.safra.SessionManager;
 import com.example.safra.models.UserRequest;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
