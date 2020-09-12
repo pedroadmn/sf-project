@@ -84,28 +84,28 @@ public class MainActivity
         Map<String, String> headers = Utils.getTokenRequestHeaders(Constants.CLIENT_ID, Constants.SECRET);
 
         authClient.getInstance().getAuthToken(headers, "client_credentials", "urn:opc:resource:consumer::all")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        response -> {
-                            sessionManager.saveAuthToken(response.getAccess_token());
-                            Intent intent = getIntent();
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                response -> {
+                    sessionManager.saveAuthToken(response.getAccess_token());
+                    Intent intent = getIntent();
 
-                            apiClient.getInstance().getAccountBalances(Utils.getHeaders(this), intent.getStringExtra("Account"))
-                                    .subscribeOn(Schedulers.io())
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(
-                                            accountBalanceResponse -> {
-                                                String accountNumber = String.format(getString(R.string.cc), accountBalanceResponse.getData().getBalance().get(0).getAccountId());
-                                                String accountBalance = String.format(getString(R.string.balance), accountBalanceResponse.getData().getBalance().get(0).getAmount().getAmount());
-                                                user.getAccount().setBalance(Double.parseDouble(accountBalance));
-                                                user.getAccount().setNumber(Integer.parseInt(accountNumber));
-                                            },
-                                            throwable -> {
-                                            });
-                        },
-                        throwable -> {
-                        });
+                    apiClient.getInstance().getAccountBalances(Utils.getHeaders(this), intent.getStringExtra("Account"))
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                            accountBalanceResponse -> {
+                                String accountNumber = String.format(getString(R.string.cc), accountBalanceResponse.getData().getBalance().get(0).getAccountId());
+                                String accountBalance = String.format(getString(R.string.balance), accountBalanceResponse.getData().getBalance().get(0).getAmount().getAmount());
+                                user.getAccount().setBalance(Double.parseDouble(accountBalance));
+                                user.getAccount().setNumber(Integer.parseInt(accountNumber));
+                            },
+                            throwable -> {
+                            });
+                },
+                throwable -> {
+                });
     }
 
     @Override
@@ -139,18 +139,18 @@ public class MainActivity
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder
-                .setMessage("Deseja realmente sair?")
-                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        finish();
-                    }
-                })
-                .setNegativeButton("Não", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                }).show();
+            .setMessage("Deseja realmente sair?")
+            .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int id) {
+                    finish();
+                }
+            })
+            .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.cancel();
+                }
+            }).show();
     }
 }
