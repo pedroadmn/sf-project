@@ -12,7 +12,7 @@
     <string name="register">REGISTER</string>
     <string name="fullName">Name</string>
     <string name="already_registered">Already Registered?</string>
-    <string name="login_here"> Login Here</string>
+    <string name="login_here">Login Here</string>
     <string name="registered_successfully">Registered Successfully</string>
     <string name="registered_unsuccessfully">Registered Unsuccessfully</string>
     <string name="login_error_message">Login error, please Login Again</string>

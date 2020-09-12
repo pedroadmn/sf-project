@@ -2,7 +2,7 @@
 <resources>
   <string name="app_name">Safra Payment</string>
   <string name="account_hint">CONTA</string>
-  <string name="email_hint">Email</string>
+  <string name="email_hint">EMAIL</string>
   <string name="password_hint">SENHA</string>
   <string name="login_button">ACESSAR</string>
   <string name="don_t_have_an_account">Não possui conta?</string>
