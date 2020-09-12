@@ -1,14 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.Fragment.TransferFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical"
+        android:layout_gravity="center">
 
-</FrameLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:maxWidth="50dp"
+            android:maxHeight="50dp"
+            android:minWidth="100dp"
+            android:minHeight="50dp"
+            android:src="@drawable/main_logo"
+            android:contentDescription="@string/logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/transfer_text"
+            android:layout_marginTop="15dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/TxtBankSelect"
+            android:layout_marginTop="15dp"
+            android:text="@string/bank"
+            android:background="@drawable/box"
+            android:textSize="18sp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/agency_hint"
+            android:inputType="number"
+            android:autofillHints="@string/agency_hint"
+            android:id="@+id/txtAgencyIn"
+            android:background="@drawable/box"
+            android:layout_weight="0.3"
+            />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/account_number_hint"
+                android:inputType="number"
+                android:autofillHints="@string/agency_hint"
+                android:id="@+id/txtAccountIn"
+                android:background="@drawable/box"
+                android:layout_weight="0.3"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/digit_hint"
+                android:inputType="text"
+                android:autofillHints="@string/digit_hint"
+                android:id="@+id/txtDigitIn"
+                android:background="@drawable/box"
+                android:layout_weight="0.3"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                />
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="R$ 0,00"
+            android:inputType="number"
+            android:id="@+id/txtValIn"
+            android:background="@drawable/box"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textAlignment="viewEnd"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="25dp">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_weight="0.5"
+                android:text="@string/back"
+                android:id="@+id/btnBck"
+                />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_weight="0.5"
+                android:text="@string/next"
+                android:id="@+id/btnNxt"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
