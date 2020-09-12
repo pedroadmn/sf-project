@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         Map<String, String> headers = Utils.getTokenRequestHeaders(Constants.CLIENT_ID, Constants.SECRET);
 
-        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
 
         authClient.getInstance().getAuthToken(headers, "client_credentials", "urn:opc:resource:consumer::all")
                 .subscribeOn(Schedulers.io())
