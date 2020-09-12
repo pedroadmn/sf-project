@@ -11,10 +11,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.safra.R;
+import com.example.safra.interfaces.UpdateBalance;
 import com.example.safra.ui.Activity.MainActivity;
 
 
-public class MainFragment extends Fragment {
+public class MainFragment
+        extends Fragment
+        implements UpdateBalance {
 
     private MainActivity main;
     private TextView
@@ -40,5 +43,9 @@ public class MainFragment extends Fragment {
             main.replaceFragment(new StoreFragment(), true);
         });
         return rootView;
+    }
+
+    public void updateBalance(){
+        accountBalance.setText(getString(R.string.balanceMessage).replace("%", String.valueOf(main.user.getAccount().getBalance())));
     }
 }
