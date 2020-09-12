@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.Fragment.MainFragment">
+
+    <LinearLayout
+        android:id="@+id/AccountInfoLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/lblMyAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/chalkboardre"
+            android:text="Minha Conta"
+            android:textColor="@color/off_white"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/lblAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/chalkboardre"
+            android:text="@string/cc"
+            android:textColor="@color/off_white"
+            android:textSize="20sp"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/lblBalance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_horizontal"
+            android:fontFamily="@font/chalkboardre"
+            android:text="@string/balance"
+            android:textColor="@color/off_white"
+            android:textSize="26sp"
+            android:visibility="invisible"/>
+    </LinearLayout>
+</FrameLayout>

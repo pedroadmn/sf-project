@@ -15,6 +15,17 @@ public class User {
     @SerializedName("email")
     private String email;
 
+    @SerializedName("account")
+    private Account account;
+
+    public User(String id, String firstName, String lastName, String email, Account account) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.account = account;
+    }
+
     public String getId() {
         return id;
     }
@@ -45,5 +56,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }
