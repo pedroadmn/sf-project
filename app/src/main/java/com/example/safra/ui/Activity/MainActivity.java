@@ -49,8 +49,8 @@ public class MainActivity
     private AccountBalanceResponse accountBalance;
     private List<Fragment> backList;
     private Fragment fragment;
-    private User user;
-    private Account userAccount;
+    protected User user;
+    protected Account userAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

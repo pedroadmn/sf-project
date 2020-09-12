@@ -15,11 +15,19 @@ public class Account {
     @SerializedName("accountBankNumber")
     private int bankNumber = 0;
 
-    public Account(double balance, int number, int agency, int bankNumber) {
+    @SerializedName("accountLimit")
+    private double limit = 250;
+
+    public Account(double balance, int number, int agency, int bankNumber, double limit) {
         this.balance = balance;
         this.number = number;
         this.agency = agency;
         this.bankNumber = bankNumber;
+        this.limit = limit;
+    }
+
+    public double getLimit() {
+        return limit;
     }
 
     public double getBalance() {
