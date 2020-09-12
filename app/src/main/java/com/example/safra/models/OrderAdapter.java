@@ -1,4 +1,4 @@
-package com.example.safra;
+package com.example.safra.models;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.safra.models.Product;
+import com.example.safra.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,45 +19,42 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> {
+public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> {
 
     private LayoutInflater inflater;
-    private List<Product> products;
     private List<Product> soldProducts;
 
-    public StoreAdapter(Context context, List<Product> products){
+    public OrderAdapter(Context context, List<Product> products) {
         this.inflater = LayoutInflater.from(context);
-        this.products = products;
-        this.soldProducts = new ArrayList<>();
+        this.soldProducts = products;
     }
 
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = inflater.inflate(R.layout.custom_product_view,viewGroup,false);
+        View view = inflater.inflate(R.layout.custom_purchase_item,viewGroup,false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Product product = this.products.get(i);
+        Product product = soldProducts.get(i);
         viewHolder.productName.setText(product.getName());
-        viewHolder.productDescription.setText(product.getDescription());
+        viewHolder.productQuantity.setText(String.format(viewHolder.itemView.getContext().getString(R.string.product_quantity), String.valueOf(product.getQuantity())));
         viewHolder.productPrice.setText(product.getPrice());
-        viewHolder.btnSell.setOnClickListener(view -> {
-            int qty = this.products.get(i).getQuantity();
-            this.products.get(i).setQuantity(qty + 1);
+        viewHolder.addProduct.setOnClickListener(v -> {
+            product.setQuantity(product.getQuantity() + 1);
         });
-    }
 
-    public List<Product> getProducts() {
-        return products;
+        viewHolder.removeProduct.setOnClickListener(v -> {
+            product.setQuantity(product.getQuantity() - 1);
+        });
     }
 
     @Override
     public int getItemCount() {
-        return products.size();
+        return soldProducts.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -65,17 +62,17 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         @BindView(R.id.product_name)
         TextView productName;
 
-        @BindView(R.id.product_description)
-        TextView productDescription;
+        @BindView(R.id.product_quantity)
+        TextView productQuantity;
 
         @BindView(R.id.product_price)
         TextView productPrice;
 
-        @BindView(R.id.product_image)
-        ImageView productImage;
+        @BindView(R.id.add_product)
+        ImageView addProduct;
 
-        @BindView(R.id.btnSell)
-        Button btnSell;
+        @BindView(R.id.remove_product)
+        ImageView removeProduct;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
