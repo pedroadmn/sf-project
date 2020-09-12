@@ -15,6 +15,7 @@ import com.example.safra.ApiClient;
 import com.example.safra.Constants;
 import com.example.safra.R;
 import com.example.safra.SessionManager;
+import com.example.safra.StoreAdapter;
 import com.example.safra.Utils;
 import com.example.safra.models.OauthClient;
 import com.example.safra.models.accountBalance.AccountBalanceResponse;
@@ -46,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
+
+    @BindView(R.id.btGoToStore)
+    Button btGoToStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,5 +95,7 @@ public class MainActivity extends AppCompatActivity {
                         },
                         throwable -> {
                         });
+
+        btGoToStore.setOnClickListener(v -> startActivity(new Intent(this, StoreActivity.class)));
     }
 }
