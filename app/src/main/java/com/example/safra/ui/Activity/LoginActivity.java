@@ -2,8 +2,10 @@ package com.example.safra.ui.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -26,7 +28,10 @@ public class LoginActivity extends AppCompatActivity {
     TextView txtRegister;
 
     @BindView(R.id.edtEmail)
-    TextView edtEmail;
+    EditText edtEmail;
+
+    @BindView(R.id.edtPassword)
+    EditText edtPassword;
 
     @BindView(R.id.btnLogin)
     Button btnLogin;
@@ -45,15 +50,29 @@ public class LoginActivity extends AppCompatActivity {
         apiClient = new ApiClient(this);
         sessionManager = new SessionManager(this);
 
-        btnLogin.setOnClickListener(v -> login());
+        btnLogin.setOnClickListener(v -> {
+            loginProgressBar.setVisibility(View.VISIBLE);
+            if (validLogin(edtEmail.getText().toString(), edtPassword.getText().toString())) {
+                login();
+            }
+        });
 
         txtRegister.setOnClickListener(v -> startActivity(new Intent(getApplicationContext(), RegisterActivity.class)));
     }
 
+    Boolean validLogin(String email, String pass){
+        //Validate the credential to see if it is valid or not.
+        //Case it's valid, the method should return TRUE.
+        //Otherwise, a FALSE should be returned
+        return true;
+    }
+
     private void login() {
-        loginProgressBar.setVisibility(View.VISIBLE);
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("Account", edtEmail.getText().toString().trim());
-        startActivity(intent);
+        final Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            loginProgressBar.setVisibility(View.GONE);
+            startActivity(new Intent(this, MainActivity.class).putExtra("Account", edtEmail.getText().toString().trim()));
+            finish();
+        }, 2000);
     }
 }

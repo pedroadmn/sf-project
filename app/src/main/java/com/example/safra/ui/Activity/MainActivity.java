@@ -1,8 +1,14 @@
 package com.example.safra.ui.Activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Base64;
@@ -15,9 +21,11 @@ import com.example.safra.ApiClient;
 import com.example.safra.Constants;
 import com.example.safra.R;
 import com.example.safra.SessionManager;
-import com.example.safra.StoreAdapter;
 import com.example.safra.Utils;
+import com.example.safra.interfaces.FragmentChangeListener;
+import com.example.safra.models.Account;
 import com.example.safra.models.OauthClient;
+import com.example.safra.models.User;
 import com.example.safra.models.accountBalance.AccountBalanceResponse;
 import com.example.safra.models.accountInfo.AccountInfoResponse;
 
@@ -30,7 +38,9 @@ import butterknife.ButterKnife;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity
+        extends AppCompatActivity
+        implements FragmentChangeListener {
 
     private ApiClient apiClient;
     private OauthClient authClient;
@@ -38,23 +48,29 @@ public class MainActivity extends AppCompatActivity {
     private AccountInfoResponse account;
     private AccountBalanceResponse accountBalance;
     private List<Fragment> backList;
-
-    @BindView(R.id.lblAccount)
-    TextView lblAccount;
-
-    @BindView(R.id.lblBalance)
-    TextView lblBalance;
-
-    @BindView(R.id.progressBar)
-    ProgressBar progressBar;
-
-    @BindView(R.id.btGoToStore)
-    Button btGoToStore;
+    private Fragment fragment;
+    private User user;
+    private Account userAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        userAccount = new Account(
+                0,
+                115432,
+                1,
+                236
+        );
+
+        user = new User(
+                String.valueOf(1),
+                "teste",
+                "da silva",
+                "teste.dasilva@teste.com.br",
+                userAccount
+        );
 
         ButterKnife.bind(this);
 
@@ -66,8 +82,6 @@ public class MainActivity extends AppCompatActivity {
         sessionManager = new SessionManager(this);
 
         Map<String, String> headers = Utils.getTokenRequestHeaders(Constants.CLIENT_ID, Constants.SECRET);
-
-        progressBar.setVisibility(View.VISIBLE);
 
         authClient.getInstance().getAuthToken(headers, "client_credentials", "urn:opc:resource:consumer::all")
                 .subscribeOn(Schedulers.io())
@@ -84,18 +98,59 @@ public class MainActivity extends AppCompatActivity {
                                             accountBalanceResponse -> {
                                                 String accountNumber = String.format(getString(R.string.cc), accountBalanceResponse.getData().getBalance().get(0).getAccountId());
                                                 String accountBalance = String.format(getString(R.string.balance), accountBalanceResponse.getData().getBalance().get(0).getAmount().getAmount());
-                                                lblBalance.setText(accountBalance);
-                                                lblAccount.setText(accountNumber);
-                                                lblAccount.setVisibility(View.VISIBLE);
-                                                lblBalance.setVisibility(View.VISIBLE);
-                                                progressBar.setVisibility(View.INVISIBLE);
+                                                user.getAccount().setBalance(Double.parseDouble(accountBalance));
+                                                user.getAccount().setNumber(Integer.parseInt(accountNumber));
                                             },
                                             throwable -> {
                                             });
                         },
                         throwable -> {
                         });
+    }
 
-        btGoToStore.setOnClickListener(v -> startActivity(new Intent(this, StoreActivity.class)));
+    @Override
+    public void replaceFragment(Fragment fragment, Boolean backStackable) {
+        this.fragment = fragment;
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.placeholder, fragment, fragment.toString());
+        if (backStackable) {
+            backList.add(fragment);
+        }
+        fragmentTransaction.commit();
+    }
+
+    void kickReplaceFragment() {
+        int index = backList.size() - 1;
+        replaceFragment(backList.get(index), false);
+        backList.remove(index);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (backList.size() > 1) {
+
+        } else {
+            confirmDialog();
+        }
+    }
+
+    private void confirmDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder
+                .setMessage("Deseja realmente sair?")
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                }).show();
     }
 }
