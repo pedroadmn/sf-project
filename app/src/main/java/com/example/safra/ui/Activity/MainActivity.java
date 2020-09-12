@@ -23,6 +23,7 @@ import com.example.safra.R;
 import com.example.safra.SessionManager;
 import com.example.safra.Utils;
 import com.example.safra.interfaces.FragmentChangeListener;
+import com.example.safra.interfaces.UpdateBalance;
 import com.example.safra.models.Account;
 import com.example.safra.models.OauthClient;
 import com.example.safra.models.User;
@@ -55,6 +56,8 @@ public class MainActivity
     private Fragment fragment;
     public User user;
     public Account userAccount;
+    private UpdateBalance upBalance;
+    private MainFragment mf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +66,7 @@ public class MainActivity
 
         userAccount = new Account(
                 0,
-                "115432",
+                getIntent().getStringExtra("Account"),
                 1,
                 236,
                 250
@@ -108,7 +111,8 @@ public class MainActivity
                                                 String accountNumber = String.format(getString(R.string.cc), accountBalanceResponse.getData().getBalance().get(0).getAccountId());
                                                 String accountBalance = String.format(getString(R.string.balance), accountBalanceResponse.getData().getBalance().get(0).getAmount().getAmount());
                                                 user.getAccount().setBalance(Double.parseDouble(accountBalance.substring(3)));
-                                                user.getAccount().setNumber(accountNumber.substring(3));
+                                                mf.updateBalance();
+                                                //user.getAccount().setNumber(accountNumber.substring(3));
                                             },
                                             throwable -> {
                                             });
@@ -117,7 +121,8 @@ public class MainActivity
                         throwable -> {
                         });
         compositeDisposable.add(disposable);
-        replaceFragment(new MainFragment(), true);
+        mf = new MainFragment();
+        replaceFragment(mf, true);
     }
 
     @Override
