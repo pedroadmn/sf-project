@@ -47,4 +47,5 @@
     <string name="account_number_text">"conta nº %"</string>
     <string name="balanceMessage">saldo disponível: R$%</string>
     <string name="store">store</string>
+    <string name="conta_hint">conta</string>
 </resources>

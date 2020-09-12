@@ -7,7 +7,7 @@ public class Account {
     private double balance = 0;
 
     @SerializedName("accountNumber")
-    private int number = 0;
+    private String number;
 
     @SerializedName("accountAgency")
     private int agency = 0;
@@ -18,7 +18,7 @@ public class Account {
     @SerializedName("accountLimit")
     private double limit = 250;
 
-    public Account(double balance, int number, int agency, int bankNumber, double limit) {
+    public Account(double balance, String number, int agency, int bankNumber, double limit) {
         this.balance = balance;
         this.number = number;
         this.agency = agency;
@@ -38,11 +38,11 @@ public class Account {
         this.balance = balance;
     }
 
-    public int getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public void setNumber(int number) {
+    public void setNumber(String number) {
         this.number = number;
     }
 

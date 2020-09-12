@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView txtRegister;
 
     @BindView(R.id.edtEmail)
-    EditText edtEmail;
+    EditText edtConta;
 
     @BindView(R.id.edtPassword)
     EditText edtPassword;
@@ -52,7 +52,7 @@ public class LoginActivity extends AppCompatActivity {
 
         btnLogin.setOnClickListener(v -> {
             loginProgressBar.setVisibility(View.VISIBLE);
-            if (validLogin(edtEmail.getText().toString(), edtPassword.getText().toString())) {
+            if (validLogin(edtConta.getText().toString(), edtPassword.getText().toString())) {
                 login();
             }
         });
@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         final Handler handler = new Handler();
         handler.postDelayed(() -> {
             loginProgressBar.setVisibility(View.GONE);
-            startActivity(new Intent(this, MainActivity.class).putExtra("Account", edtEmail.getText().toString().trim()));
+            startActivity(new Intent(this, MainActivity.class).putExtra("Account", edtConta.getText().toString().trim()));
             finish();
         }, 2000);
     }

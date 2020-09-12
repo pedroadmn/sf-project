@@ -38,6 +38,8 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MainActivity
@@ -61,7 +63,7 @@ public class MainActivity
 
         userAccount = new Account(
                 0,
-                115432,
+                "115432",
                 1,
                 236,
                 250
@@ -86,7 +88,9 @@ public class MainActivity
 
         Map<String, String> headers = Utils.getTokenRequestHeaders(Constants.CLIENT_ID, Constants.SECRET);
 
-        authClient.getInstance().getAuthToken(headers, "client_credentials", "urn:opc:resource:consumer::all")
+        CompositeDisposable compositeDisposable = new CompositeDisposable();
+
+        Disposable disposable = authClient.getInstance().getAuthToken(headers, "client_credentials", "urn:opc:resource:consumer::all")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -94,21 +98,25 @@ public class MainActivity
                             sessionManager.saveAuthToken(response.getAccess_token());
                             Intent intent = getIntent();
 
-                            apiClient.getInstance().getAccountBalances(Utils.getHeaders(this), intent.getStringExtra("Account"))
+                            CompositeDisposable compositeDisposableIn = new CompositeDisposable();
+
+                            Disposable disposableIn = apiClient.getInstance().getAccountBalances(Utils.getHeaders(this), intent.getStringExtra("Account"))
                                     .subscribeOn(Schedulers.io())
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(
                                             accountBalanceResponse -> {
                                                 String accountNumber = String.format(getString(R.string.cc), accountBalanceResponse.getData().getBalance().get(0).getAccountId());
                                                 String accountBalance = String.format(getString(R.string.balance), accountBalanceResponse.getData().getBalance().get(0).getAmount().getAmount());
-                                                user.getAccount().setBalance(Double.parseDouble(accountBalance));
-                                                user.getAccount().setNumber(Integer.parseInt(accountNumber));
+                                                user.getAccount().setBalance(Double.parseDouble(accountBalance.substring(3)));
+                                                user.getAccount().setNumber(accountNumber.substring(3));
                                             },
                                             throwable -> {
                                             });
+                            compositeDisposableIn.add(disposableIn);
                         },
                         throwable -> {
                         });
+        compositeDisposable.add(disposable);
         replaceFragment(new MainFragment(), true);
     }
 
