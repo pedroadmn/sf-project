@@ -44,4 +44,7 @@
     <string name="agency_hint">agencia</string>
     <string name="account_number_hint">conta</string>
     <string name="digit_hint">digito</string>
+    <string name="account_number_text">"conta nº %"</string>
+    <string name="balanceMessage">saldo disponível: R$%</string>
+    <string name="store">store</string>
 </resources>

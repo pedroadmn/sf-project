@@ -33,18 +33,12 @@ public class StoreActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         List<Product> products = new ArrayList<>();
-        Product product1 = new Product("1", "Blusa Croche", "Tamanho M", "R$ 70, 00");
-        Product product2 = new Product("2", "Bermuda", "Tamanho G", "R$ 90, 00");
-        Product product3 = new Product("3", "Blusa Croche", "Tamanho M", "R$ 70, 00");
-        Product product4 = new Product("4", "Bermuda", "Tamanho G", "R$ 90, 00");
-        Product product5 = new Product("5", "Blusa Croche", "Tamanho M", "R$ 70, 00");
-        Product product6 = new Product("6", "Bermuda", "Tamanho G", "R$ 90, 00");
-        products.add(product1);
-        products.add(product2);
-        products.add(product3);
-        products.add(product4);
-        products.add(product5);
-        products.add(product6);
+        products.add(new Product("1", "Blusa Croche", "Tamanho M", "R$ 70, 00"));
+        products.add(new Product("2", "Bermuda", "Tamanho G", "R$ 90, 00"));
+        products.add(new Product("3", "Blusa Croche", "Tamanho M", "R$ 70, 00"));
+        products.add(new Product("4", "Bermuda", "Tamanho G", "R$ 90, 00"));
+        products.add(new Product("5", "Blusa Croche", "Tamanho M", "R$ 70, 00"));
+        products.add(new Product("6", "Bermuda", "Tamanho G", "R$ 90, 00"));
 
         rvStore.setLayoutManager(new LinearLayoutManager(this));
         storeAdapter = new StoreAdapter(this, products);

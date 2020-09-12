@@ -28,7 +28,9 @@ import com.example.safra.models.OauthClient;
 import com.example.safra.models.User;
 import com.example.safra.models.accountBalance.AccountBalanceResponse;
 import com.example.safra.models.accountInfo.AccountInfoResponse;
+import com.example.safra.ui.Fragment.MainFragment;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,10 +49,10 @@ public class MainActivity
     private SessionManager sessionManager;
     private AccountInfoResponse account;
     private AccountBalanceResponse accountBalance;
-    private List<Fragment> backList;
+    private List<Fragment> backList = new ArrayList<>();
     private Fragment fragment;
-    protected User user;
-    protected Account userAccount;
+    public User user;
+    public Account userAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,8 @@ public class MainActivity
                 0,
                 115432,
                 1,
-                236
+                236,
+                250
         );
 
         user = new User(
@@ -106,6 +109,7 @@ public class MainActivity
                         },
                         throwable -> {
                         });
+        replaceFragment(new MainFragment(), true);
     }
 
     @Override
@@ -121,15 +125,15 @@ public class MainActivity
     }
 
     void kickReplaceFragment() {
-        int index = backList.size() - 1;
+        int index = backList.size() - 2;
         replaceFragment(backList.get(index), false);
-        backList.remove(index);
+        backList.remove(index + 1);
     }
 
     @Override
     public void onBackPressed() {
-        if (backList.size() > 1) {
-
+        if (backList.size() >= 1) {
+            kickReplaceFragment();
         } else {
             confirmDialog();
         }
