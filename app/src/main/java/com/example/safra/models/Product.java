@@ -24,6 +24,12 @@ public class Product {
     @SerializedName("accountId")
     private String accountId;
 
+    @SerializedName("creationDate")
+    private String creationDate;
+
+    @SerializedName("changeDate")
+    private String changeDate;
+
     public Product(int id, String name, String description, String price, int quantity) {
         this.id = id;
         this.name = name;
