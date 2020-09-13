@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.safra.R;
@@ -27,11 +28,25 @@ public class TransferFragment extends Fragment {
         btnConfirm;
 
     private EditText
-        txtBank,
         txtAgency,
         txtNumber,
         txtDigit,
         txtAmount;
+    private TextView txtBank;
+
+    protected class Bank{
+        public final String name;
+        public final int number;
+
+        Bank(String name, int number){
+            this.name = name;
+            this.number = number;
+        }
+
+        public boolean isSet(){return (name.isEmpty() && number == 0);}
+    }
+
+    protected Bank bank;
 
     private MainActivity main;
 
@@ -49,34 +64,44 @@ public class TransferFragment extends Fragment {
         btnConfirm = rootView.findViewById(R.id.btnTransfer);
         btnBack = rootView.findViewById(R.id.btnBckTransfer);
 
-        //txtBank = rootView.findViewById(R.id.TxtBankSelect);
+        txtBank = rootView.findViewById(R.id.TxtBankSelect);
         txtAgency = rootView.findViewById(R.id.txtAgencyIn);
         txtNumber = rootView.findViewById(R.id.txtAccountIn);
         txtDigit = rootView.findViewById(R.id.txtDigitIn);
         txtAmount = rootView.findViewById(R.id.txtValIn);
 
         btnConfirm.setOnClickListener(view -> {
-            Transaction ted = new Transaction(
-                txtNumber.getText().toString() + txtDigit.getText().toString(),
-                Double.parseDouble(txtAmount.getText().toString()),
-                "txtBank.getText().toString()",
-                "",
-                main.user
-            );
+            if(
+                    !txtAgency.getText().toString().isEmpty() &&
+                    !txtNumber.getText().toString().isEmpty() &&
+                    !txtDigit.getText().toString().isEmpty() &&
+                    !txtAmount.getText().toString().isEmpty()
+            ) {
+                Transaction ted = new Transaction(
+                        txtNumber.getText().toString() + txtDigit.getText().toString(),
+                        Double.parseDouble(txtAmount.getText().toString()),
+                        "txtBank.getText().toString()",
+                        "",
+                        main.user
+                );
 
-            try {
-                ted.makeTransaction();
+                try {
+                    ted.makeTransaction();
 
-                final Dialog dial = new Dialog(Objects.requireNonNull(getActivity()), android.R.style.Theme_Black_NoTitleBar);
-                dial.setContentView(R.layout.popup_transfer);
-                Objects.requireNonNull(dial.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
-                dial.setCancelable(true);
-                dial.show();
+                    final Dialog dial = new Dialog(Objects.requireNonNull(getActivity()), android.R.style.Theme_Black_NoTitleBar);
+                    dial.setContentView(R.layout.popup_transfer);
+                    Objects.requireNonNull(dial.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
+                    dial.setCancelable(true);
+                    dial.show();
 
-                main.kickReplaceFragment();
+                    main.kickReplaceFragment();
 
-            } catch (Exception e) {
-                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+                }
+            }
+            else{
+                Toast.makeText(getActivity(), "Todos os campos devem ser preenchidos", Toast.LENGTH_LONG).show();
             }
         });
 
