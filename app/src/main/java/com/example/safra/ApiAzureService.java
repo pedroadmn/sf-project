@@ -1,5 +1,7 @@
 package com.example.safra;
 
+import com.example.safra.models.LoginRequest;
+import com.example.safra.models.LoginResponse;
 import com.example.safra.models.Product;
 import com.example.safra.models.sales.SalesRequest;
 import com.example.safra.models.sales.SalesResponse;
@@ -22,4 +24,7 @@ public interface ApiAzureService {
 
     @POST(Constants.SALES)
     Observable<SalesResponse> sendSales(@HeaderMap Map<String, String> headers, @Body SalesRequest salesRequest);
+
+    @POST(Constants.LOGIN)
+    Observable<LoginResponse> login(@Body LoginRequest loginRequest);
 }

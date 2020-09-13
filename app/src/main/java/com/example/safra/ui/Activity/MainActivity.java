@@ -94,29 +94,29 @@ public class MainActivity
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        response -> {
-                            sessionManager.saveAuthToken(response.getAccess_token());
-                            Intent intent = getIntent();
+                    response -> {
+                        sessionManager.saveAuthToken(response.getAccess_token());
+                        Intent intent = getIntent();
 
-                            CompositeDisposable compositeDisposableIn = new CompositeDisposable();
+                        CompositeDisposable compositeDisposableIn = new CompositeDisposable();
 
-                            Disposable disposableIn = apiClient.getInstance().getAccountBalances(Utils.getHeaders(this), intent.getStringExtra("Account"))
-                                    .subscribeOn(Schedulers.io())
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(
-                                            accountBalanceResponse -> {
-                                                String accountNumber = String.format(getString(R.string.cc), accountBalanceResponse.getData().getBalance().get(0).getAccountId());
-                                                String accountBalance = String.format(getString(R.string.balance), accountBalanceResponse.getData().getBalance().get(0).getAmount().getAmount());
-                                                user.getAccount().setBalance(Double.parseDouble(accountBalance.substring(3)));
-                                                mf.updateBalance();
-                                                //user.getAccount().setNumber(accountNumber.substring(3));
-                                            },
-                                            throwable -> {
-                                            });
-                            compositeDisposableIn.add(disposableIn);
-                        },
-                        throwable -> {
-                        });
+                        Disposable disposableIn = apiClient.getInstance().getAccountBalances(Utils.getHeaders(this), intent.getStringExtra("Account"))
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(
+                                accountBalanceResponse -> {
+                                    String accountNumber = String.format(getString(R.string.cc), accountBalanceResponse.getData().getBalance().get(0).getAccountId());
+                                    String accountBalance = String.format(getString(R.string.balance), accountBalanceResponse.getData().getBalance().get(0).getAmount().getAmount());
+                                    user.getAccount().setBalance(Double.parseDouble(accountBalance.substring(3)));
+                                    mf.updateBalance();
+                                    //user.getAccount().setNumber(accountNumber.substring(3));
+                                },
+                                throwable -> {
+                                });
+                        compositeDisposableIn.add(disposableIn);
+                    },
+                    throwable -> {
+                    });
         compositeDisposable.add(disposable);
         mf = new MainFragment();
         replaceFragment(mf, true);
