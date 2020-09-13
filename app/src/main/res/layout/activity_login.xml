@@ -39,6 +39,7 @@
             android:background="@drawable/et_style"
             android:hint="@string/conta_hint"
             android:inputType="number"
+            android:textColor="#000"
             android:textColorHint="@color/black_overlay"
             android:textSize="14sp"
             android:textAlignment="center"
@@ -56,7 +57,7 @@
             android:textSize="14sp"
             android:textAlignment="center"
             android:inputType="textPassword"
-            android:textColor="#fff"
+            android:textColor="#000"
             android:textColorHint="@color/black_overlay"
             android:layout_gravity="center_horizontal"/>
 

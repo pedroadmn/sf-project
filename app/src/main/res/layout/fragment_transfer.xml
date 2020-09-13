@@ -3,7 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Fragment.TransferFragment">
+    tools:context=".ui.Fragment.TransferFragment"
+    android:background="@color/colorPrimaryDark"
+    android:padding="10dp"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,70 +38,84 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:id="@+id/TxtBankSelect"
-            android:layout_marginTop="15dp"
-            android:text="Banco Safra"
-            android:background="@drawable/box"
-            android:textSize="18sp"
-            />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="10dp"
-            >
+            android:text="@string/bank_select"
+            android:background="@drawable/et_style"
+            android:alpha="0.9"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:textColor="@color/black_overlay"
+            android:layout_gravity="center_horizontal"
+            />
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginTop="10dp"
             android:hint="@string/agency_hint"
             android:inputType="number"
             android:autofillHints="@string/agency_hint"
             android:id="@+id/txtAgencyIn"
-            android:background="@drawable/box"
-            android:layout_weight="0.3"
+            android:background="@drawable/et_style"
+            android:alpha="0.9"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textColorHint="@color/black_overlay"
+            android:layout_gravity="center_horizontal"
             />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/account_number_hint"
-                android:inputType="number"
-                android:autofillHints="@string/agency_hint"
-                android:id="@+id/txtAccountIn"
-                android:background="@drawable/box"
-                android:layout_weight="0.3"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/digit_hint"
-                android:inputType="text"
-                android:autofillHints="@string/digit_hint"
-                android:id="@+id/txtDigitIn"
-                android:background="@drawable/box"
-                android:layout_weight="0.3"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                />
-        </LinearLayout>
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
+            android:layout_marginTop="10dp"
+            android:hint="@string/account_number_hint"
+            android:inputType="number"
+            android:autofillHints="@string/agency_hint"
+            android:id="@+id/txtAccountIn"
+            android:background="@drawable/et_style"
+            android:alpha="0.9"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textColorHint="@color/black_overlay"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="10dp"
+            android:hint="@string/digit_hint"
+            android:inputType="text"
+            android:autofillHints="@string/digit_hint"
+            android:id="@+id/txtDigitIn"
+            android:background="@drawable/et_style"
+            android:alpha="0.9"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textColorHint="@color/black_overlay"
+            android:layout_gravity="center_horizontal"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginTop="10dp"
             android:hint="R$ 0,00"
             android:inputType="numberDecimal"
             android:id="@+id/txtValIn"
-            android:background="@drawable/box"
-            android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:textAlignment="viewEnd"
-            android:gravity="end" />
+            android:background="@drawable/et_style"
+            android:alpha="0.9"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textColorHint="@color/black_overlay"
+            android:layout_gravity="center_horizontal"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -107,22 +124,27 @@
             android:layout_marginTop="25dp">
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_weight="0.5"
                 android:text="@string/back"
                 android:id="@+id/btnBckTransfer"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bt_style"
+                android:layout_gravity="center"
+                android:textColor="#fff"
                 />
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_weight="0.5"
-                android:text="@string/confirm"
                 android:id="@+id/btnTransfer"
-                />
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/bt_style"
+                android:text="@string/confirm"
+                android:layout_marginEnd="0dp"
+                android:layout_marginStart="50dp"
+                android:textColor="#fff"
+                android:layout_marginRight="0dp"
+                android:layout_marginLeft="50dp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

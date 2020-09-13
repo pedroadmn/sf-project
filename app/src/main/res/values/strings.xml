@@ -62,4 +62,5 @@
     <string name="share_link_popup">COMPARTILHAR\nLINK</string>
     <string name="new_order_popup">NOVO PEDIDO</string>
     <string name="login_unsuccessfully">usuario ou senha incorretos</string>
+    <string name="bank_select">selecionar banco</string>
 </resources>
