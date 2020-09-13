@@ -50,4 +50,5 @@
     <string name="conta_hint">CONTA</string>
     <string name="product_quantity">x%s</string>
     <string name="amount">TOTAL R$ %s</string>
+    <string name="price">R$ %s</string>
 </resources>

@@ -44,15 +44,19 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         Product product = this.products.get(i);
         viewHolder.productName.setText(product.getName());
         viewHolder.productDescription.setText(product.getDescription());
-        viewHolder.productPrice.setText(product.getPrice());
+        viewHolder.productPrice.setText(String.format(viewHolder.itemView.getContext().getString(R.string.price), product.getPrice()));
         viewHolder.btnSell.setOnClickListener(view -> {
             int qty = this.products.get(i).getQuantity();
             this.products.get(i).setQuantity(qty + 1);
         });
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Product> getSoldProducts() {
+        for (Product product : products) {
+            if (product.getQuantity() != 0)
+            this.soldProducts.add(product);
+        }
+        return this.soldProducts;
     }
 
     @Override

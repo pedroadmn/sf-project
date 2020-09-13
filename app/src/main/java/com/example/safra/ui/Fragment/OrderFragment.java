@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.safra.R;
 import com.example.safra.StoreAdapter;
@@ -25,6 +26,9 @@ public class OrderFragment extends Fragment {
 
     @BindView(R.id.rvStore)
     RecyclerView rvStore;
+
+    @BindView(R.id.txtTotal)
+    TextView txtTotal;
 
     OrderAdapter orderAdapter;
 
@@ -43,20 +47,23 @@ public class OrderFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_order, container, false);
         main = (MainActivity) getActivity();
 
-        rvStore = rootView.findViewById(R.id.rvStore);
 
-//        ButterKnife.bind(main, rootView);
-//        List<Product> products = new ArrayList<>();
-//        products.add(new Product("1", "Blusa Croche", "Tamanho M", "R$ 70, 00"));
-//        products.add(new Product("2", "Bermuda", "Tamanho G", "R$ 90, 00"));
-//        products.add(new Product("3", "Blusa Croche", "Tamanho M", "R$ 70, 00"));
-//        products.add(new Product("4", "Bermuda", "Tamanho G", "R$ 90, 00"));
-//        products.add(new Product("5", "Blusa Croche", "Tamanho M", "R$ 70, 00"));
-//        products.add(new Product("6", "Bermuda", "Tamanho G", "R$ 90, 00"));
+        txtTotal = rootView.findViewById(R.id.txtTotal);
+        txtTotal.setText(String.format(getString(R.string.amount), getTotal()));
+
+        rvStore = rootView.findViewById(R.id.rvStore);
 
         rvStore.setLayoutManager(new LinearLayoutManager(main));
         orderAdapter = new OrderAdapter(main, soldProducts);
         rvStore.setAdapter(orderAdapter);
         return rootView;
+    }
+
+    private String getTotal() {
+        double total = 0;
+        for (Product product : soldProducts) {
+            total += product.getQuantity() * Double.parseDouble(product.getPrice());
+        }
+        return String.valueOf(total);
     }
 }

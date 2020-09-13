@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.safra.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -33,23 +31,25 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = inflater.inflate(R.layout.custom_purchase_item,viewGroup,false);
+        View view = inflater.inflate(R.layout.custom_purchase_item, viewGroup,false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Product product = soldProducts.get(i);
-        viewHolder.productName.setText(product.getName());
-        viewHolder.productQuantity.setText(String.format(viewHolder.itemView.getContext().getString(R.string.product_quantity), String.valueOf(product.getQuantity())));
-        viewHolder.productPrice.setText(product.getPrice());
-        viewHolder.addProduct.setOnClickListener(v -> {
-            product.setQuantity(product.getQuantity() + 1);
-        });
+        if (soldProducts.get(i).getQuantity() != 0) {
+            Product product = soldProducts.get(i);
+            viewHolder.productName.setText(product.getName());
+            viewHolder.productQuantity.setText(String.format(viewHolder.itemView.getContext().getString(R.string.product_quantity), String.valueOf(product.getQuantity())));
+            viewHolder.productPrice.setText(String.format(viewHolder.itemView.getContext().getString(R.string.price), String.valueOf(Double.parseDouble(product.getPrice()) * product.getQuantity())));
+            viewHolder.addProduct.setOnClickListener(v -> {
+                product.setQuantity(product.getQuantity() + 1);
+            });
 
-        viewHolder.removeProduct.setOnClickListener(v -> {
-            product.setQuantity(product.getQuantity() - 1);
-        });
+            viewHolder.removeProduct.setOnClickListener(v -> {
+                product.setQuantity(product.getQuantity() - 1);
+            });
+        }
     }
 
     @Override

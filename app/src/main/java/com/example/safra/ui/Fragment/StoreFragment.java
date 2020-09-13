@@ -52,18 +52,18 @@ public class StoreFragment extends Fragment {
 
         ButterKnife.bind(main, rootView);
         List<Product> products = new ArrayList<>();
-        products.add(new Product("1", "Blusa Croche", "Tamanho M", "R$ 70, 00", 0));
-        products.add(new Product("2", "Bermuda", "Tamanho G", "R$ 90, 00", 0));
-        products.add(new Product("3", "Blusa Croche", "Tamanho M", "R$ 70, 00", 0));
-        products.add(new Product("4", "Bermuda", "Tamanho G", "R$ 90, 00", 0));
-        products.add(new Product("5", "Blusa Croche", "Tamanho M", "R$ 70, 00", 0));
-        products.add(new Product("6", "Bermuda", "Tamanho G", "R$ 90, 00", 0));
+        products.add(new Product("1", "Blusa Croche", "Tamanho M", "70.00", 0));
+        products.add(new Product("2", "Bermuda", "Tamanho G", "90.00", 0));
+        products.add(new Product("3", "Blusa Croche", "Tamanho M", "70.00", 0));
+        products.add(new Product("4", "Bermuda", "Tamanho G", "90.00", 0));
+        products.add(new Product("5", "Blusa Croche", "Tamanho M", "70.00", 0));
+        products.add(new Product("6", "Bermuda", "Tamanho G", "90.00", 0));
 
         rvStore.setLayoutManager(new LinearLayoutManager(main));
         storeAdapter = new StoreAdapter(main, products);
         rvStore.setAdapter(storeAdapter);
 
-        btnClosePurchase.setOnClickListener(v -> main.replaceFragment(new OrderFragment(storeAdapter.getProducts()), true));
+        btnClosePurchase.setOnClickListener(v -> main.replaceFragment(new OrderFragment(storeAdapter.getSoldProducts()), true));
         return rootView;
     }
 }
