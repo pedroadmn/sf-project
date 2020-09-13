@@ -45,10 +45,20 @@
     <string name="account_number_hint">conta</string>
     <string name="digit_hint">digito</string>
     <string name="account_number_text">"conta nº %"</string>
-    <string name="balanceMessage">saldo disponível: R$%</string>
-    <string name="store">store</string>
+    <string name="balanceMessage">R$%</string>
+    <string name="store">minha loja</string>
     <string name="conta_hint">CONTA</string>
     <string name="product_quantity">x%s</string>
     <string name="amount">TOTAL R$ %s</string>
     <string name="price">R$ %s</string>
+    <string name="exit_hint">sair</string>
+    <string name="profile_hint">perfil</string>
+    <string name="name_placeholder_account">bem vind%1, %2!</string>
+    <string name="balance_hint">seu saldo é</string>
+    <string name="statement_text">EXTRATO</string>
+    <string name="transfer_text_cta">TRANSFERIR</string>
+    <string name="confirm">transferir</string>
+    <string name="change_order_cta">ALTERAR PEDIDO</string>
+    <string name="share_link_popup">COMPARTILHAR\nLINK</string>
+    <string name="new_order_popup">NOVO PEDIDO</string>
 </resources>

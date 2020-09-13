@@ -1,5 +1,8 @@
 package com.example.safra.ui.Fragment;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,60 +10,79 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.safra.R;
+import com.example.safra.models.Transaction;
+import com.example.safra.ui.Activity.MainActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link TransferFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.Objects;
+
 public class TransferFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private Button
+        btnBack,
+        btnConfirm;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private EditText
+        txtBank,
+        txtAgency,
+        txtNumber,
+        txtDigit,
+        txtAmount;
+
+    private MainActivity main;
 
     public TransferFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TransferFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static TransferFragment newInstance(String param1, String param2) {
-        TransferFragment fragment = new TransferFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_transfer, container, false);
+
+        View rootView = inflater.inflate(R.layout.fragment_transfer, container, false);
+        main = (MainActivity) getActivity();
+
+        btnConfirm = rootView.findViewById(R.id.btnTransfer);
+        btnBack = rootView.findViewById(R.id.btnBckTransfer);
+
+        //txtBank = rootView.findViewById(R.id.TxtBankSelect);
+        txtAgency = rootView.findViewById(R.id.txtAgencyIn);
+        txtNumber = rootView.findViewById(R.id.txtAccountIn);
+        txtDigit = rootView.findViewById(R.id.txtDigitIn);
+        txtAmount = rootView.findViewById(R.id.txtValIn);
+
+        btnConfirm.setOnClickListener(view -> {
+            Transaction ted = new Transaction(
+                txtNumber.getText().toString() + txtDigit.getText().toString(),
+                Double.parseDouble(txtAmount.getText().toString()),
+                "txtBank.getText().toString()",
+                "",
+                main.user
+            );
+
+            try {
+                ted.makeTransaction();
+
+                final Dialog dial = new Dialog(Objects.requireNonNull(getActivity()), android.R.style.Theme_Black_NoTitleBar);
+                dial.setContentView(R.layout.popup_transfer);
+                Objects.requireNonNull(dial.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
+                dial.setCancelable(true);
+                dial.show();
+
+                main.kickReplaceFragment();
+
+            } catch (Exception e) {
+                Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        btnBack.setOnClickListener(view -> {
+            main.kickReplaceFragment();
+        });
+        return rootView;
     }
 }

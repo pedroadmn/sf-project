@@ -1,5 +1,6 @@
-package com.example.safra;
+package com.example.safra.interfaces;
 
+import com.example.safra.Constants;
 import com.example.safra.models.TokenResponse;
 
 import java.util.Map;

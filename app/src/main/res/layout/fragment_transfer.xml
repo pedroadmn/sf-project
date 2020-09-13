@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/TxtBankSelect"
             android:layout_marginTop="15dp"
-            android:text="@string/bank"
+            android:text="Banco Safra"
             android:background="@drawable/box"
             android:textSize="18sp"
             />
@@ -92,13 +92,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="R$ 0,00"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:id="@+id/txtValIn"
             android:background="@drawable/box"
             android:layout_marginTop="10dp"
             android:textStyle="bold"
             android:textAlignment="viewEnd"
-            />
+            android:gravity="end" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -112,7 +112,7 @@
                 android:layout_gravity="start"
                 android:layout_weight="0.5"
                 android:text="@string/back"
-                android:id="@+id/btnBck"
+                android:id="@+id/btnBckTransfer"
                 />
 
             <Button
@@ -120,8 +120,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_weight="0.5"
-                android:text="@string/next"
-                android:id="@+id/btnNxt"
+                android:text="@string/confirm"
+                android:id="@+id/btnTransfer"
                 />
         </LinearLayout>
     </LinearLayout>

@@ -1,60 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.Fragment.MainFragment">
 
     <LinearLayout
-        android:id="@+id/AccountInfoLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:id="@+id/lblMyAccount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_horizontal"
-            android:fontFamily="@font/chalkboardre"
-            android:text="Minha Conta"
-            android:textColor="@color/off_white"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/lblAccount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_horizontal"
-            android:fontFamily="@font/chalkboardre"
-            android:text="@string/cc"
-            android:textColor="@color/off_white"
-            android:textSize="20sp"/>
-
-        <TextView
-            android:id="@+id/lblBalance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:gravity="center_horizontal"
-            android:fontFamily="@font/chalkboardre"
-            android:text="@string/balance"
-            android:textColor="@color/off_white"
-            android:textSize="26sp"/>
-    </LinearLayout>
+        android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnStore"
+            android:id="@+id/btnExit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/store"
+            android:layout_gravity="start"
+            android:text="@string/exit_hint" />
+
+        <Button
+            android:id="@+id/btnProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:text="@string/profile_hint" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/lblMyName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/chalkboardre"
+        android:gravity="center_horizontal"
+        android:text="@string/name_placeholder_account"
+        android:textColor="@color/off_white"
+        android:textSize="40sp"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/chalkboardre"
+        android:gravity="center_horizontal"
+        android:text="@string/balance_hint"
+        android:textColor="@color/off_white"
+        android:textSize="26sp" />
+
+    <TextView
+        android:id="@+id/lblBalance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/chalkboardre"
+        android:gravity="center_horizontal"
+        android:textColor="@color/off_white"
+        android:textSize="40sp" />
+
+    <Button
+        android:id="@+id/btnStore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/store" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnTransfer"
+            android:text="@string/transfer_text_cta"
             />
-</FrameLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnStatement"
+            android:text="@string/statement_text"
+            />
+
+    </LinearLayout>
+</LinearLayout>
