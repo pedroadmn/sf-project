@@ -40,7 +40,7 @@ public class MainFragment
         accountNumber.setText(getString(R.string.account_number_text).replace("%", String.valueOf(main.user.getAccount().getNumber())));
         accountBalance.setText(getString(R.string.balanceMessage).replace("%", String.valueOf(main.user.getAccount().getBalance())));
         btnStore.setOnClickListener(view -> {
-            main.replaceFragment(new StoreFragment(), true);
+            main.replaceFragment(new StoreFragment(main.user.getAccount().getNumber()), true);
         });
         return rootView;
     }

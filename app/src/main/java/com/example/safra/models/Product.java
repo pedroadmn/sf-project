@@ -2,9 +2,12 @@ package com.example.safra.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Product {
     @SerializedName("id")
-    private String id;
+    private int id;
 
     @SerializedName("name")
     private String name;
@@ -18,7 +21,10 @@ public class Product {
     @SerializedName("quantity")
     private int quantity;
 
-    public Product(String id, String name, String description, String price, int quantity) {
+    @SerializedName("accountId")
+    private String accountId;
+
+    public Product(int id, String name, String description, String price, int quantity) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -26,11 +32,11 @@ public class Product {
         this.quantity = quantity;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

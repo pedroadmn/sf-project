@@ -84,10 +84,7 @@ public class MainActivity
 
         apiClient = new ApiClient(this);
         sessionManager = new SessionManager(this);
-
         authClient = new OauthClient(this);
-        apiClient = new ApiClient(this);
-        sessionManager = new SessionManager(this);
 
         Map<String, String> headers = Utils.getTokenRequestHeaders(Constants.CLIENT_ID, Constants.SECRET);
 
