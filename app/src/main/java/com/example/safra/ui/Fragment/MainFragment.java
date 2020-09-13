@@ -2,6 +2,7 @@ package com.example.safra.ui.Fragment;
 
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -23,10 +24,10 @@ public class MainFragment
     private TextView
         accountBalance,
         welcome;
+
+    ConstraintLayout btnExit, btnProfile;
     private Button
             btnStore,
-            btnExit,
-            btnProfile,
             btnTransfer,
             btnStatement;
 

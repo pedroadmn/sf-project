@@ -53,8 +53,8 @@
     <string name="price">R$ %s</string>
     <string name="exit_hint">sair</string>
     <string name="profile_hint">perfil</string>
-    <string name="name_placeholder_account">bem vind%1, %2!</string>
-    <string name="balance_hint">seu saldo é</string>
+    <string name="name_placeholder_account">Bem vind%1, %2!</string>
+    <string name="balance_hint">Seu saldo é</string>
     <string name="statement_text">EXTRATO</string>
     <string name="transfer_text_cta">TRANSFERIR</string>
     <string name="confirm">transferir</string>
