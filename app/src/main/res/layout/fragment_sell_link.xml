@@ -64,10 +64,9 @@
 
         <TextView
             android:id="@+id/sharedLink"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="25dp"
             android:background="@drawable/txt_link_style"
-            android:hint="hhtps://www.safrapayment/cobrancape"
             android:textColor="#909197"
             android:textSize="16sp"
             android:textAlignment="center"

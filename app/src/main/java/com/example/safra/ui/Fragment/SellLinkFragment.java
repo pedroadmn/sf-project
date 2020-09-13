@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.safra.R;
 import com.example.safra.StoreAdapter;
@@ -32,9 +33,15 @@ public class SellLinkFragment extends Fragment {
     @BindView(R.id.shareLinkProgressBar)
     ProgressBar shareLinkProgressBar;
 
+    @BindView(R.id.sharedLink)
+    TextView sharedLink;
+
     private MainActivity main;
 
-    public SellLinkFragment() {
+    private String linkToShare;
+
+    public SellLinkFragment(String linkToShare) {
+        this.linkToShare = linkToShare;
     }
 
     @Override
@@ -48,7 +55,10 @@ public class SellLinkFragment extends Fragment {
         btnShareLink = rootView.findViewById(R.id.btnShareLink);
         btnNewOrder = rootView.findViewById(R.id.btnNewOrder);
         ivSharedLink = rootView.findViewById(R.id.ivSharedLink);
+        sharedLink = rootView.findViewById(R.id.sharedLink);
         shareLinkProgressBar = rootView.findViewById(R.id.shareLinkProgressBar);
+
+        sharedLink.setText(linkToShare);
 
         return rootView;
     }

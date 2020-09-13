@@ -84,7 +84,7 @@ public class StoreFragment extends Fragment {
 
         storeProgressBar.setVisibility(View.VISIBLE);
 
-        azureClient.getInstance().getProducts(Utils.getHeaders(main), true)
+        azureClient.getInstance().getProducts(Utils.getHeaders(main), accountNumber)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -107,7 +107,7 @@ public class StoreFragment extends Fragment {
 //        products.add(new Product("5", "Blusa Croche", "Tamanho M", "70.00", 0));
 //        products.add(new Product("6", "Bermuda", "Tamanho G", "90.00", 0));
 
-        btnClosePurchase.setOnClickListener(v -> main.replaceFragment(new OrderFragment(storeAdapter.getSoldProducts()), true));
+        btnClosePurchase.setOnClickListener(v -> main.replaceFragment(new OrderFragment(storeAdapter.getSoldProducts(), accountNumber), true));
         return rootView;
     }
 }

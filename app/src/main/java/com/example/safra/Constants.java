@@ -32,5 +32,6 @@ public class Constants {
     public static final String SECRET = "1a2075e3-b15e-4324-902c-0f12f8f08082";
 
     // PRODUCTS
-    public static final String PRODUCTS = "product";
+    public static final String PRODUCTS = "account/{account}/products";
+    public static final String SALES = "sales";
 }
