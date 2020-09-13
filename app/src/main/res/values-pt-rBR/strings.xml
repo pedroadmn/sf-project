@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-  <string name="app_name">Safra Payment</string>
+  <string name="app_name">Safra Meu Negócio</string>
   <string name="account_hint">CONTA</string>
   <string name="email_hint">EMAIL</string>
   <string name="password_hint">SENHA</string>
@@ -11,7 +11,7 @@
   <string name="login">Entrar</string>
   <string name="loginDetails">Esqueceu os detalhes do login?</string>
   <string name="helpLogin"> Ajuda para Log In.</string>
-  <string name="register">REGISTRAR</string>
+  <string name="register">ABRIR CONTA</string>
   <string name="fullName">Nome</string>
   <string name="valid_email_required">E-mail inválido</string>
   <string name="valid_password_required">Senha inválida</string>

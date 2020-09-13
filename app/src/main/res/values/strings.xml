@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Safra Payment</string>
+    <string name="app_name">Safra Meu Negócio</string>
     <string name="account_hint">ACCOUNT</string>
     <string name="email_hint">Email</string>
     <string name="password_hint">PASSWORD</string>
