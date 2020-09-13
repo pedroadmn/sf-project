@@ -74,7 +74,7 @@ public class MainActivity
 
         user = new User(
                 String.valueOf(1),
-                "teste",
+                "Náiron",
                 "da silva",
                 "teste.dasilva@teste.com.br",
                 userAccount
@@ -145,14 +145,14 @@ public class MainActivity
 
     @Override
     public void onBackPressed() {
-        if (backList.size() >= 1) {
+        if (backList.size() > 1) {
             kickReplaceFragment();
         } else {
             confirmDialog();
         }
     }
 
-    private void confirmDialog() {
+    public void confirmDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder

@@ -51,4 +51,7 @@
     <string name="product_quantity">x%s</string>
     <string name="amount">TOTAL R$ %s</string>
     <string name="price">R$ %s</string>
+    <string name="exit_hint">sair</string>
+    <string name="profile_hint">perfil</string>
+    <string name="name_placeholder_account">bem vind%1, %2!</string>
 </resources>
