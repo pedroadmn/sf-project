@@ -1,6 +1,8 @@
 package com.example.safra;
 
 import android.content.Context;
+import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Base64;
 
 import java.util.HashMap;

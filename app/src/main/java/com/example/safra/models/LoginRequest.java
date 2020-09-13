@@ -1,25 +1,27 @@
 package com.example.safra.models;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class LoginRequest {
-    @SerializedName("email")
-    private String email;
-
+    @SerializedName("accountId")
+    @Expose
+    private String accountId;
     @SerializedName("password")
+    @Expose
     private String password;
 
-    public LoginRequest(String email, String password) {
-        this.email = email;
+    public LoginRequest(String accountId, String password) {
+        this.accountId = accountId;
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
+    public String getAccountId() {
+        return accountId;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAccountId(String accountId) {
+        this.accountId = accountId;
     }
 
     public String getPassword() {

@@ -1,4 +1,4 @@
-package com.example.safra.ui;
+package com.example.safra.ui.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +19,6 @@ import com.example.safra.SessionManager;
 import com.example.safra.models.UserRequest;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,8 +41,8 @@ public class RegisterActivity extends AppCompatActivity {
     @BindView(R.id.txtLoginHere)
     TextView txtLoginHere;
 
-    @BindView(R.id.progressBar)
-    ProgressBar progressBar;
+    @BindView(R.id.registerProgressBar)
+        ProgressBar progressBar;
 
     private ApiClient apiClient;
     private SessionManager sessionManager;

@@ -1,6 +1,7 @@
 package com.example.safra;
 
 public class Constants {
+    public static final String AZURE_BASE_URL = "https://safraapi.azurewebsites.net/api/v1/";
     public static final String SAFRA_BASE_URL = "https://af3tqle6wgdocsdirzlfrq7w5m.apigateway.sa-saopaulo-1.oci.customer-oci.com/fiap-sandbox/";
     public static final String BASE_AUTH_URL = "https://idcs-902a944ff6854c5fbe94750e48d66be5.identity.oraclecloud.com/oauth2/v1/";
     public static final String TOKEN = "token";
@@ -29,4 +30,10 @@ public class Constants {
     // CODES
     public static final String CLIENT_ID = "f9d3cd9600874ac2803d03ca709b78eb";
     public static final String SECRET = "1a2075e3-b15e-4324-902c-0f12f8f08082";
+
+    // PRODUCTS
+    public static final String PRODUCTS = "account/{account}/products";
+
+    public static final String SALES = "sale";
+    public static final String LOGIN = "user/login";
 }

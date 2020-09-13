@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#262e58</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="off_white">#fcfcfd</color>
+    <color name="card_background">#384380</color>
+    <color name="black_overlay">#66000000</color>
+
+
 </resources>

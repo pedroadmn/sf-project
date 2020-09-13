@@ -2,7 +2,7 @@ package com.example.safra.models;
 
 import android.content.Context;
 
-import com.example.safra.AuthService;
+import com.example.safra.interfaces.AuthService;
 import com.example.safra.AuthenticationInterceptor;
 import com.example.safra.Constants;
 

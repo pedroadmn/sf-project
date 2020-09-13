@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,102 +10,101 @@
 
     <LinearLayout
         android:id="@+id/LoginLinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    <LinearLayout
+        android:id="@+id/appNameLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:orientation="vertical">
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/lblHeader"
-            android:layout_width="match_parent"
+            android:id="@+id/lblSafra"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="30dp"
             android:gravity="center_horizontal"
-            android:padding="20dp"
-            android:text="@string/app_name"
+            android:layout_marginRight="5dp"
+            android:text="Safra"
+            android:fontFamily="@font/arialmt"
+            android:textColor="#c0ae6c"
+            android:textSize="36sp" />
+
+        <TextView
+            android:id="@+id/lblMyBusiness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:gravity="center_horizontal"
+            android:text="Meu Negócio"
+            android:fontFamily="@font/corbel_bold"
             android:textColor="@color/off_white"
-            android:textSize="36sp"
-            android:textStyle="bold" />
+            android:textSize="40sp" />
+
+    </LinearLayout>
 
         <EditText
             android:id="@+id/edtEmail"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:adjustViewBounds="true"
-            android:alpha="0.7"
-            android:background="@drawable/edittext"
-            android:hint="@string/account_hint"
-            android:padding="10dp"
-            android:textColor="#fff"
-            android:textColorHint="#fff" />
+            android:layout_width="320dp"
+            android:layout_height="25dp"
+            android:alpha="0.9"
+            android:background="@drawable/et_style"
+            android:hint="@string/conta_hint"
+            android:inputType="number"
+            android:textColor="#000"
+            android:textColorHint="@color/black_overlay"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            />
 
         <EditText
             android:id="@+id/edtPassword"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_width="320dp"
+            android:layout_height="25dp"
             android:layout_marginTop="10dp"
-            android:adjustViewBounds="true"
-            android:alpha="0.7"
-            android:background="@drawable/edittext"
+            android:alpha="0.9"
+            android:background="@drawable/et_style"
             android:hint="@string/password_hint"
+            android:textSize="14sp"
+            android:textAlignment="center"
             android:inputType="textPassword"
-            android:padding="10dp"
-            android:textColor="#fff"
-            android:textColorHint="#fff" />
+            android:textColor="#000"
+            android:textColorHint="@color/black_overlay"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:id="@+id/txtForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:text="@string/forgot_password"
+            android:textColor="#ffffff"
+            android:layout_marginTop="5dp"
+            android:textSize="8sp"
+            android:layout_gravity="end"
+            app:layout_constraintEnd_toEndOf="@+id/edtPassword" />
 
         <Button
             android:id="@+id/btnLogin"
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/button"
-            android:text="@string/login"
-            android:textColor="#000" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_margin="15dp"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtForgotPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/forgot_password"
-                android:background="?attr/selectableItemBackground"
-                android:textColor="@color/off_white"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/bt_style"
             android:layout_gravity="center"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="15dp"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/txtRegister"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:text="@string/register"
-                android:textAlignment="center"
-                android:textColor="@color/off_white"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:layout_gravity="center_horizontal" />
-        </LinearLayout>
+            android:text="@string/login"
+            android:textColor="#fff" />
     </LinearLayout>
 
     <ProgressBar
@@ -115,5 +115,48 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         />
-</RelativeLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/ic_register"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/txtRegister"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/abrir_conta" />
+
+        <TextView
+            android:id="@+id/txtRegister"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="?attr/selectableItemBackground"
+            android:text="@string/register"
+            android:textAlignment="center"
+            android:textColor="@color/off_white"
+            android:lines="2"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

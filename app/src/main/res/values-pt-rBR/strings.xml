@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-  <string name="app_name">Safra</string>
-  <string name="account_hint">Conta</string>
-  <string name="email_hint">Email</string>
-  <string name="password_hint">Senha</string>
-  <string name="login_button">Entrar</string>
+  <string name="app_name">Safra Meu Negócio</string>
+  <string name="account_hint">CONTA</string>
+  <string name="email_hint">EMAIL</string>
+  <string name="password_hint">SENHA</string>
+  <string name="login_button">ACESSAR</string>
   <string name="don_t_have_an_account">Não possui conta?</string>
-  <string name="sign_up_button">Cadastrar</string>
+  <string name="sign_up_button">CADASTRAR</string>
   <string name="sucess_login">Entrou com sucesso</string>
   <string name="login">Entrar</string>
   <string name="loginDetails">Esqueceu os detalhes do login?</string>
   <string name="helpLogin"> Ajuda para Log In.</string>
-  <string name="register">Abrir conta</string>
+  <string name="register">ABRIR CONTA</string>
   <string name="fullName">Nome</string>
   <string name="valid_email_required">E-mail inválido</string>
   <string name="valid_password_required">Senha inválida</string>
   <string name="saripaar_required">Este campo é obrigatório</string>
-  <string name="forgot_password">Esqueceu a senha?</string>
+  <string name="forgot_password">ESQUECI A SENHA</string>
   <string name="already_registered">Já registrado?</string>
   <string name="login_here">Entre aqui</string>
   <string name="registered_successfully">Registrado com sucesso</string>

@@ -1,38 +1,36 @@
 package com.example.safra.models;
 
+
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.HashMap;
+import java.util.Map;
+
+
 public class LoginResponse {
-    @SerializedName("status_code")
-    private int statusCode;
 
-    @SerializedName("auth_token")
-    private String authToken;
+    @SerializedName("clientId")
+    @Expose
+    private String clientId;
+    @SerializedName("secret")
+    @Expose
+    private String secret;
 
-    @SerializedName("user")
-    private User user;
-
-    public int getStatusCode() {
-        return statusCode;
+    public String getClientId() {
+        return clientId;
     }
 
-    public void setStatusCode(int statusCode) {
-        this.statusCode = statusCode;
+    public void setClientId(String clientId) {
+        this.clientId = clientId;
     }
 
-    public String getAuthToken() {
-        return authToken;
+    public String getSecret() {
+        return secret;
     }
 
-    public void setAuthToken(String authToken) {
-        this.authToken = authToken;
+    public void setSecret(String secret) {
+        this.secret = secret;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }
