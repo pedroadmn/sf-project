@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/TxtBankSelect"
             android:layout_marginTop="15dp"
-            android:text="@string/bank"
+            android:text="Banco Safra"
             android:background="@drawable/box"
             android:textSize="18sp"
             />

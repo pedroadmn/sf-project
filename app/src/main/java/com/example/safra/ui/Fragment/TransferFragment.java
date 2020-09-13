@@ -1,5 +1,8 @@
 package com.example.safra.ui.Fragment;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,6 +17,8 @@ import android.widget.Toast;
 import com.example.safra.R;
 import com.example.safra.models.Transaction;
 import com.example.safra.ui.Activity.MainActivity;
+
+import java.util.Objects;
 
 public class TransferFragment extends Fragment {
 
@@ -37,7 +42,7 @@ public class TransferFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View rootView = inflater.inflate(R.layout.fragment_transfer, container, false);
         main = (MainActivity) getActivity();
 
@@ -61,6 +66,15 @@ public class TransferFragment extends Fragment {
 
             try {
                 ted.makeTransaction();
+
+                final Dialog dial = new Dialog(Objects.requireNonNull(getActivity()), android.R.style.Theme_Black_NoTitleBar);
+                dial.setContentView(R.layout.popup_transfer);
+                Objects.requireNonNull(dial.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.argb(100, 0, 0, 0)));
+                dial.setCancelable(true);
+                dial.show();
+
+                main.kickReplaceFragment();
+
             } catch (Exception e) {
                 Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
             }
