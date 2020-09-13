@@ -1,5 +1,8 @@
 package com.example.safra.ui.Fragment;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -13,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.safra.R;
 import com.example.safra.StoreAdapter;
@@ -56,6 +60,9 @@ public class SellLinkFragment extends Fragment {
         btnShareLink = rootView.findViewById(R.id.btnShareLink);
         btnNewOrder = rootView.findViewById(R.id.btnNewOrder);
         ivSharedLink = rootView.findViewById(R.id.ivSharedLink);
+
+        ivSharedLink.setOnClickListener(v -> copyText());
+
         sharedLink = rootView.findViewById(R.id.sharedLink);
         shareLinkProgressBar = rootView.findViewById(R.id.shareLinkProgressBar);
 
@@ -64,6 +71,13 @@ public class SellLinkFragment extends Fragment {
         sharedLink.setText(linkToShare);
 
         return rootView;
+    }
+
+    private void copyText() {
+        ClipboardManager manager = (ClipboardManager) main.getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText("text", sharedLink.getText());
+        manager.setPrimaryClip(clipData);
+        Toast.makeText(main, "Link copiado", Toast.LENGTH_SHORT).show();
     }
 
     private void shareLink(String link){
