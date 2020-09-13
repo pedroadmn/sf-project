@@ -59,6 +59,9 @@ public class MainActivity
     private UpdateBalance upBalance;
     private MainFragment mf;
 
+    @BindView(R.id.mainProgressBar)
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,6 +93,9 @@ public class MainActivity
 
         CompositeDisposable compositeDisposable = new CompositeDisposable();
 
+        mf = new MainFragment();
+
+        progressBar.setVisibility(View.VISIBLE);
         Disposable disposable = authClient.getInstance().getAuthToken(headers, "client_credentials", "urn:opc:resource:consumer::all")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -108,18 +114,19 @@ public class MainActivity
                                     String accountNumber = String.format(getString(R.string.cc), accountBalanceResponse.getData().getBalance().get(0).getAccountId());
                                     String accountBalance = String.format(getString(R.string.balance), accountBalanceResponse.getData().getBalance().get(0).getAmount().getAmount());
                                     user.getAccount().setBalance(Double.parseDouble(accountBalance.substring(3)));
+                                    replaceFragment(mf, true);
                                     mf.updateBalance();
+                                    progressBar.setVisibility(View.INVISIBLE);
                                     //user.getAccount().setNumber(accountNumber.substring(3));
                                 },
                                 throwable -> {
+                                    progressBar.setVisibility(View.INVISIBLE);
                                 });
                         compositeDisposableIn.add(disposableIn);
                     },
                     throwable -> {
                     });
         compositeDisposable.add(disposable);
-        mf = new MainFragment();
-        replaceFragment(mf, true);
     }
 
     @Override

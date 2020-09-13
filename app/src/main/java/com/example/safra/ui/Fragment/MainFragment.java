@@ -1,5 +1,6 @@
 package com.example.safra.ui.Fragment;
 
+import android.opengl.Visibility;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +21,8 @@ import com.example.safra.ui.Activity.MainActivity;
 
 public class MainFragment
         extends Fragment{
+
+    ProgressBar mainProgressBar;
 
     private MainActivity main;
     private TextView
@@ -40,6 +44,8 @@ public class MainFragment
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         main = (MainActivity) getActivity();
+
+        mainProgressBar = rootView.findViewById(R.id.mainProgressBar);
 
         accountBalance = rootView.findViewById(R.id.lblBalance);
         welcome = rootView.findViewById(R.id.lblMyName);
