@@ -137,7 +137,7 @@ public class MainActivity
         fragmentTransaction.commit();
     }
 
-    void kickReplaceFragment() {
+    public void kickReplaceFragment() {
         int index = backList.size() - 2;
         replaceFragment(backList.get(index), false);
         backList.remove(index + 1);

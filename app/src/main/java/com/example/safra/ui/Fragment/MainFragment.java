@@ -26,7 +26,9 @@ public class MainFragment
     private Button
             btnStore,
             btnExit,
-            btnProfile;
+            btnProfile,
+            btnTransfer,
+            btnStatement;
 
     public MainFragment() {
         // Required empty public constructor
@@ -43,6 +45,8 @@ public class MainFragment
         btnStore = rootView.findViewById(R.id.btnStore);
         btnExit = rootView.findViewById(R.id.btnExit);
         btnProfile = rootView.findViewById(R.id.btnProfile);
+        btnTransfer = rootView.findViewById(R.id.btnTransfer);
+        btnStatement = rootView.findViewById(R.id.btnStatement);
 
         welcome.setText(getString(R.string.name_placeholder_account).replace("%1", "o").replace("%2", main.user.getFirstName()));
         accountBalance.setText(getString(R.string.balanceMessage).replace("%", String.valueOf(main.user.getAccount().getBalance())));
@@ -58,6 +62,14 @@ public class MainFragment
         btnProfile.setOnClickListener(view -> {
             Toast.makeText(getActivity(),"Not yet implemented", Toast.LENGTH_LONG).show();
             main.replaceFragment(new ProfileFragment(), true);
+        });
+
+        btnStatement.setOnClickListener(view -> {
+            main.replaceFragment(new ExtratoFragment(), true);
+        });
+
+        btnTransfer.setOnClickListener(view -> {
+            main.replaceFragment(new TransferFragment(), true);
         });
 
         return rootView;

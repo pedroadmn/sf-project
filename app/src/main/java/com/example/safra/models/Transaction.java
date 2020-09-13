@@ -1,18 +1,16 @@
 package com.example.safra.models;
 
 public class Transaction {
-    private int destinationAccount;
-    private int destinationAmount;
-    private int destinationBank;
-    private int idOrigin;
+    private String destinationAccount;
+    private double destinationAmount;
+    private String destinationBank;
     private String destinationDescription;
     private User user;
 
-    public Transaction(int destinationAccount, int destinationAmount, int destinationBank, int idOrigin, String destinationDescription, User user) {
+    public Transaction(String destinationAccount, double destinationAmount, String destinationBank, String destinationDescription, User user) {
         this.destinationAccount = destinationAccount;
         this.destinationAmount = destinationAmount;
         this.destinationBank = destinationBank;
-        this.idOrigin = idOrigin;
         this.destinationDescription = destinationDescription;
         this.user = user;
     }
@@ -28,7 +26,7 @@ public class Transaction {
 
     private boolean hasBalance(){
         //Check if the user can make this transaction withe the balance/limit available
-        return user.getAccount().getBalance() - destinationAmount <= user.getAccount().getBalance() + user.getAccount().getLimit();
+        return user.getAccount().getBalance() - destinationAmount >= - user.getAccount().getLimit();
     }
 
     public void makeTransaction() throws Exception{
