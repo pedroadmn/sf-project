@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.model.GlideUrl;
+import com.bumptech.glide.load.model.LazyHeaders;
 import com.example.safra.models.Product;
 
 import java.util.ArrayList;
@@ -24,11 +27,13 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
     private LayoutInflater inflater;
     private List<Product> products;
     private List<Product> soldProducts;
+    private Context context;
 
     public StoreAdapter(Context context, List<Product> products){
         this.inflater = LayoutInflater.from(context);
         this.products = products;
         this.soldProducts = new ArrayList<>();
+        this.context = context;
     }
 
 
@@ -41,14 +46,26 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+
         Product product = this.products.get(i);
         viewHolder.productName.setText(product.getName());
         viewHolder.productDescription.setText(product.getDescription());
         viewHolder.productPrice.setText(String.format(viewHolder.itemView.getContext().getString(R.string.price), product.getPrice()));
+        Glide.with(this.context)
+                .asBitmap()
+                .load(getUrlWithHeaders("https://safraapi.azurewebsites.net/api/v1/product/" + product.getId() + "/image"))
+                .override(150, 100)
+                .into(viewHolder.productImage);
         viewHolder.btnSell.setOnClickListener(view -> {
             int qty = this.products.get(i).getQuantity();
             this.products.get(i).setQuantity(qty + 1);
         });
+    }
+
+    private GlideUrl getUrlWithHeaders(String url) {
+        SessionManager sessionManager = new SessionManager(context);
+        return new GlideUrl(url, new LazyHeaders.Builder()
+                    .addHeader("Authorization", String.format(String.format(Constants.HTTP_AUTHORIZATION_VALUE_PREFIX, sessionManager.fetchAuthToken()))).build());
     }
 
     public List<Product> getSoldProducts() {
