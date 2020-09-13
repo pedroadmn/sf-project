@@ -1,5 +1,6 @@
 package com.example.safra.ui.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -58,8 +59,21 @@ public class SellLinkFragment extends Fragment {
         sharedLink = rootView.findViewById(R.id.sharedLink);
         shareLinkProgressBar = rootView.findViewById(R.id.shareLinkProgressBar);
 
+        btnShareLink.setOnClickListener(v -> shareLink(linkToShare));
+
         sharedLink.setText(linkToShare);
 
         return rootView;
     }
+
+    private void shareLink(String link){
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, link);
+        sendIntent.setType("text/plain");
+
+        Intent shareIntent = Intent.createChooser(sendIntent, null);
+        startActivity(shareIntent);
+    }
+
 }

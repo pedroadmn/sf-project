@@ -25,6 +25,7 @@ import com.example.safra.ui.Activity.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
@@ -101,12 +102,13 @@ public class OrderFragment extends Fragment {
     private void sendProductsInfo() {
         orderProgressBar.setVisibility(View.VISIBLE);
         SalesRequest salesRequest = new SalesRequest(this.accountNumber, getSalesList());
+//        Map<String, String> header = Utils.getHeaders(main);
         azureClient.getInstance().sendSales(Utils.getHeaders(main), salesRequest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         linkToShare -> {
-                            main.replaceFragment(new SellLinkFragment(linkToShare), true);
+                            main.replaceFragment(new SellLinkFragment(linkToShare.getLink()), true);
                             orderProgressBar.setVisibility(View.INVISIBLE);
                         },
                         throwable -> {

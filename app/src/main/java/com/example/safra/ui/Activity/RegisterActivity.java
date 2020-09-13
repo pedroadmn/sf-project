@@ -42,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
     TextView txtLoginHere;
 
     @BindView(R.id.registerProgressBar)
-    ProgressBar progressBar;
+        ProgressBar progressBar;
 
     private ApiClient apiClient;
     private SessionManager sessionManager;

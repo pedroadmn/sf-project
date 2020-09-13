@@ -33,5 +33,5 @@ public class Constants {
 
     // PRODUCTS
     public static final String PRODUCTS = "account/{account}/products";
-    public static final String SALES = "sales";
+    public static final String SALES = "sale";
 }
