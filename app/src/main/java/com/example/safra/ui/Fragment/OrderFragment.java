@@ -30,6 +30,9 @@ public class OrderFragment extends Fragment {
     @BindView(R.id.txtTotal)
     TextView txtTotal;
 
+    @BindView(R.id.btnFinishOrder)
+    Button btnFinishOrder;
+
     OrderAdapter orderAdapter;
 
     private MainActivity main;
@@ -50,6 +53,10 @@ public class OrderFragment extends Fragment {
 
         txtTotal = rootView.findViewById(R.id.txtTotal);
         txtTotal.setText(String.format(getString(R.string.amount), getTotal()));
+
+        btnFinishOrder = rootView.findViewById(R.id.btnFinishOrder);
+
+        btnFinishOrder.setOnClickListener(v -> main.replaceFragment(new SellLinkFragment(), true));
 
         rvStore = rootView.findViewById(R.id.rvStore);
 
