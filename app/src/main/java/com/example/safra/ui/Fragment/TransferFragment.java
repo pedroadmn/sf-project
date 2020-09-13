@@ -10,18 +10,27 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.safra.BankSpinnerAdapter;
 import com.example.safra.R;
+import com.example.safra.models.Bank;
 import com.example.safra.models.Transaction;
 import com.example.safra.ui.Activity.MainActivity;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class TransferFragment extends Fragment {
+
+    private BankSpinnerAdapter bankSpinnerAdapter;
+
+    private Spinner bankSpinner;
 
     private Button
         btnBack,
@@ -34,17 +43,17 @@ public class TransferFragment extends Fragment {
         txtAmount;
     private TextView txtBank;
 
-    protected class Bank{
-        public final String name;
-        public final int number;
-
-        Bank(String name, int number){
-            this.name = name;
-            this.number = number;
-        }
-
-        public boolean isSet(){return (name.isEmpty() && number == 0);}
-    }
+//    protected class Bank{
+//        public final String name;
+//        public final int number;
+//
+//        Bank(String name, int number){
+//            this.name = name;
+//            this.number = number;
+//        }
+//
+//        public boolean isSet(){return (name.isEmpty() && number == 0);}
+//    }
 
     protected Bank bank;
 
@@ -61,10 +70,38 @@ public class TransferFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_transfer, container, false);
         main = (MainActivity) getActivity();
 
+        bankSpinner = rootView.findViewById(R.id.bank_spn);
+
+        ArrayList<Bank> list = new ArrayList<com.example.safra.models.Bank>() {{
+            add(new Bank("Safra", "1"));
+            add(new Bank("Bradesco", "2"));
+            add(new Bank("Banco do Brasil", "3"));
+            add(new Bank("Banco do Nordeste", "4"));
+            add(new Bank("Sicoob", "5"));
+            add(new Bank("Nubank", "6"));
+            add(new Bank("Inter", "7"));
+            add(new Bank("Original", "8"));
+        }};
+
+        bankSpinnerAdapter = new BankSpinnerAdapter(main, list);
+        bankSpinnerAdapter.setDropDownViewResource(R.layout.default_spinner_dropdown_item);
+        bankSpinner.setAdapter(bankSpinnerAdapter);
+
+        bankSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
         btnConfirm = rootView.findViewById(R.id.btnTransfer);
         btnBack = rootView.findViewById(R.id.btnBckTransfer);
 
-        txtBank = rootView.findViewById(R.id.TxtBankSelect);
         txtAgency = rootView.findViewById(R.id.txtAgencyIn);
         txtNumber = rootView.findViewById(R.id.txtAccountIn);
         txtDigit = rootView.findViewById(R.id.txtDigitIn);
