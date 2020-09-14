@@ -95,14 +95,6 @@ public class StoreFragment extends Fragment {
                             storeProgressBar.setVisibility(View.INVISIBLE);
                         });
 
-
-//        products.add(new Product("1", "Blusa Croche", "Tamanho M", "70.00", 0));
-//        products.add(new Product("2", "Bermuda", "Tamanho G", "90.00", 0));
-//        products.add(new Product("3", "Blusa Croche", "Tamanho M", "70.00", 0));
-//        products.add(new Product("4", "Bermuda", "Tamanho G", "90.00", 0));
-//        products.add(new Product("5", "Blusa Croche", "Tamanho M", "70.00", 0));
-//        products.add(new Product("6", "Bermuda", "Tamanho G", "90.00", 0));
-
         btnClosePurchase.setOnClickListener(v -> main.replaceFragment(new OrderFragment(storeAdapter.getSoldProducts(), accountNumber), true));
         return rootView;
     }
