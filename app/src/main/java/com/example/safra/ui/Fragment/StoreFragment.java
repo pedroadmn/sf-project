@@ -71,7 +71,7 @@ public class StoreFragment extends Fragment {
         rvStore = rootView.findViewById(R.id.rvStore);
         btnClosePurchase = rootView.findViewById(R.id.btnClosePurchase);
         storeProgressBar = rootView.findViewById(R.id.storeProgressBar);
-        
+
         apiClient = new ApiClient(main);
         sessionManager = new SessionManager(main);
         azureClient = new AzureClient(main);

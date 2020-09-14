@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,7 +47,6 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-
         Product product = this.products.get(i);
         viewHolder.productName.setText(product.getName());
         viewHolder.productDescription.setText(product.getDescription());
@@ -59,6 +59,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         viewHolder.btnSell.setOnClickListener(view -> {
             int qty = this.products.get(i).getQuantity();
             this.products.get(i).setQuantity(qty + 1);
+            Toast.makeText(context, "Item adicionado", Toast.LENGTH_SHORT).show();
         });
     }
 
