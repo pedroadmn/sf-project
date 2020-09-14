@@ -67,6 +67,8 @@ public class MainActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ButterKnife.bind(this);
+
         userAccount = new Account(
                 0,
                 getIntent().getStringExtra("Account"),
@@ -83,7 +85,7 @@ public class MainActivity
                 userAccount
         );
 
-        ButterKnife.bind(this);
+
 
         apiClient = new ApiClient(this);
         sessionManager = new SessionManager(this);

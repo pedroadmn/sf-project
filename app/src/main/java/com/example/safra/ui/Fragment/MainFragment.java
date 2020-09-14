@@ -22,8 +22,6 @@ import com.example.safra.ui.Activity.MainActivity;
 public class MainFragment
         extends Fragment{
 
-    ProgressBar mainProgressBar;
-
     private MainActivity main;
     private TextView
         accountBalance,
@@ -44,8 +42,6 @@ public class MainFragment
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         main = (MainActivity) getActivity();
-
-        mainProgressBar = rootView.findViewById(R.id.mainProgressBar);
 
         accountBalance = rootView.findViewById(R.id.lblBalance);
         welcome = rootView.findViewById(R.id.lblMyName);

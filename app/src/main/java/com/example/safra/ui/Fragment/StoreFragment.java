@@ -29,8 +29,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class StoreFragment extends Fragment {
@@ -73,9 +71,7 @@ public class StoreFragment extends Fragment {
         rvStore = rootView.findViewById(R.id.rvStore);
         btnClosePurchase = rootView.findViewById(R.id.btnClosePurchase);
         storeProgressBar = rootView.findViewById(R.id.storeProgressBar);
-
-        ButterKnife.bind(main, rootView);
-
+        
         apiClient = new ApiClient(main);
         sessionManager = new SessionManager(main);
         azureClient = new AzureClient(main);
