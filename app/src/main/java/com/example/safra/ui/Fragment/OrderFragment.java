@@ -75,7 +75,7 @@ public class OrderFragment extends Fragment {
         azureClient = new AzureClient(main);
 
         txtTotal = rootView.findViewById(R.id.txtTotal);
-        txtTotal.setText(String.format(getString(R.string.amount), getTotal()));
+        getTotal(soldProducts);
 
         btnFinishOrder = rootView.findViewById(R.id.btnFinishOrder);
 
@@ -86,23 +86,24 @@ public class OrderFragment extends Fragment {
         rvStore = rootView.findViewById(R.id.rvStore);
 
         rvStore.setLayoutManager(new LinearLayoutManager(main));
-        orderAdapter = new OrderAdapter(main, soldProducts);
+        orderAdapter = new OrderAdapter(main, soldProducts, this);
         rvStore.setAdapter(orderAdapter);
         return rootView;
     }
 
-    private String getTotal() {
+    public String getTotal(List<Product> products) {
         double total = 0;
-        for (Product product : soldProducts) {
+        for (Product product : products) {
             total += product.getQuantity() * Double.parseDouble(product.getPrice());
         }
-        return String.valueOf(total);
+        String totalPrice = String.valueOf(total);
+        txtTotal.setText(String.format(getString(R.string.amount), totalPrice));
+        return totalPrice;
     }
 
     private void sendProductsInfo() {
         orderProgressBar.setVisibility(View.VISIBLE);
         SalesRequest salesRequest = new SalesRequest(this.accountNumber, getSalesList());
-//        Map<String, String> header = Utils.getHeaders(main);
         azureClient.getInstance().sendSales(Utils.getHeaders(main), salesRequest)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -117,11 +118,9 @@ public class OrderFragment extends Fragment {
     }
 
     private List<com.example.safra.models.sales.Product> getSalesList() {
-        for (Product product : soldProducts
-             ) {
+        for (Product product : soldProducts) {
             sales.add(new com.example.safra.models.sales.Product(product.getId(), product.getQuantity()));
         }
         return sales;
     }
-
 }

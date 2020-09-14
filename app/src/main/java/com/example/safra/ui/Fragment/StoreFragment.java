@@ -29,8 +29,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class StoreFragment extends Fragment {
@@ -74,8 +72,6 @@ public class StoreFragment extends Fragment {
         btnClosePurchase = rootView.findViewById(R.id.btnClosePurchase);
         storeProgressBar = rootView.findViewById(R.id.storeProgressBar);
 
-        ButterKnife.bind(main, rootView);
-
         apiClient = new ApiClient(main);
         sessionManager = new SessionManager(main);
         azureClient = new AzureClient(main);
@@ -98,14 +94,6 @@ public class StoreFragment extends Fragment {
                         throwable -> {
                             storeProgressBar.setVisibility(View.INVISIBLE);
                         });
-
-
-//        products.add(new Product("1", "Blusa Croche", "Tamanho M", "70.00", 0));
-//        products.add(new Product("2", "Bermuda", "Tamanho G", "90.00", 0));
-//        products.add(new Product("3", "Blusa Croche", "Tamanho M", "70.00", 0));
-//        products.add(new Product("4", "Bermuda", "Tamanho G", "90.00", 0));
-//        products.add(new Product("5", "Blusa Croche", "Tamanho M", "70.00", 0));
-//        products.add(new Product("6", "Bermuda", "Tamanho G", "90.00", 0));
 
         btnClosePurchase.setOnClickListener(v -> main.replaceFragment(new OrderFragment(storeAdapter.getSoldProducts(), accountNumber), true));
         return rootView;

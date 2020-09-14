@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.safra.R;
+import com.example.safra.ui.Fragment.OrderFragment;
 
 import java.util.List;
 
@@ -21,10 +22,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
 
     private LayoutInflater inflater;
     private List<Product> soldProducts;
+    private OrderFragment orderFragment;
 
-    public OrderAdapter(Context context, List<Product> products) {
+    public OrderAdapter(Context context, List<Product> products, OrderFragment fragment) {
         this.inflater = LayoutInflater.from(context);
         this.soldProducts = products;
+        this.orderFragment = fragment;
     }
 
 
@@ -38,16 +41,19 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         if (soldProducts.get(i).getQuantity() != 0) {
-            Product product = soldProducts.get(i);
-            viewHolder.productName.setText(product.getName());
-            viewHolder.productQuantity.setText(String.format(viewHolder.itemView.getContext().getString(R.string.product_quantity), String.valueOf(product.getQuantity())));
-            viewHolder.productPrice.setText(String.format(viewHolder.itemView.getContext().getString(R.string.price), String.valueOf(Double.parseDouble(product.getPrice()) * product.getQuantity())));
+            viewHolder.productName.setText(soldProducts.get(i).getName());
+            viewHolder.productQuantity.setText(String.format(viewHolder.itemView.getContext().getString(R.string.product_quantity), String.valueOf(soldProducts.get(i).getQuantity())));
+            viewHolder.productPrice.setText(String.format(viewHolder.itemView.getContext().getString(R.string.price), String.valueOf(Double.parseDouble(soldProducts.get(i).getPrice()) * soldProducts.get(i).getQuantity())));
             viewHolder.addProduct.setOnClickListener(v -> {
-                product.setQuantity(product.getQuantity() + 1);
+                soldProducts.get(i).setQuantity(soldProducts.get(i).getQuantity() + 1);
+                this.notifyDataSetChanged();
+                this.orderFragment.getTotal(soldProducts);
             });
 
             viewHolder.removeProduct.setOnClickListener(v -> {
-                product.setQuantity(product.getQuantity() - 1);
+                soldProducts.get(i).setQuantity(soldProducts.get(i).getQuantity() - 1);
+                this.notifyDataSetChanged();
+                this.orderFragment.getTotal(soldProducts);
             });
         }
     }
