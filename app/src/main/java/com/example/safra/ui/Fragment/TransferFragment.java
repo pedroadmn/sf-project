@@ -17,7 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.safra.BankSpinnerAdapter;
+import com.example.safra.adapter.BankSpinnerAdapter;
 import com.example.safra.R;
 import com.example.safra.models.Bank;
 import com.example.safra.models.Transaction;
