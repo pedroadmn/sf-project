@@ -1,0 +1,2 @@
+A aplicação foi desenvolvida em Java, implementando Fragments e Activities para lidar com as transições de view.
+Para efetuar requisições HTTPS foi utilizado o `Retrofit`, permitindo a criação de requisições customizadas e seguindo os padrões de objetos que são enviado e recebidos pela API.
