@@ -1,4 +1,4 @@
-package com.example.safra;
+package com.example.safra.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,6 +12,7 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.safra.R;
 import com.example.safra.models.Bank;
 
 public class BankSpinnerAdapter extends ArrayAdapter<Bank> {
