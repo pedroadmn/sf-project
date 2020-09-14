@@ -7,3 +7,7 @@ Nós estamos usando algumas importantes bibliotecas/tecnologias para o desenvolv
     Glide - Para o carregamento de imagens nas views.
     RxAndroid - Uso de programação reativa. Padrão Observer.
     Retrofit - Client HTTP para requisições a APIs.
+    
+**Screenshots**
+ 
+ ![](/screenshots/1.jpg) ![](/screenshots/2.jpg) ![](/screenshots/3.jpg) ![](/screenshots/4.jpg)
