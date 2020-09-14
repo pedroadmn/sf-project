@@ -1,6 +1,7 @@
 package com.example.safra;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,9 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         viewHolder.btnSell.setOnClickListener(view -> {
             int qty = this.products.get(i).getQuantity();
             this.products.get(i).setQuantity(qty + 1);
-            Toast.makeText(context, "Item adicionado", Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(context, "Item adicionado", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+            toast.show();
         });
     }
 
