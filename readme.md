@@ -22,4 +22,4 @@ Nós estamos usando algumas importantes bibliotecas/tecnologias para o desenvolv
     
 **Screenshots**
  
- ![](/screenshots/1.jpg) ![](/screenshots/2.jpg) ![](/screenshots/3.jpg) ![](/screenshots/4.jpg)
+ ![](/screenshot/.jpg) ![](/screenshot/1.jpg) ![](/screenshots/2.jpg) ![](/screenshots/3.jpg) ![](/screenshots/4.jpg)
